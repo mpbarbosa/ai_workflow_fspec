@@ -201,3 +201,13 @@ A conforming step implementation must:
 | `ANALYSIS` | `"analysis"` | Analysis Step — heavyweight AI analysis; same execute signature as PROJECT. *(Observed in `STEP_DEFINITION` exports of steps 18 and 19; not yet defined in `step_contract.js` — specification gap.)* |
 
 The set of valid identifiers is closed. Implementations must not introduce additional kind values without revising this specification.
+
+---
+
+## 7. Step Specifications
+
+Individual step behaviour is documented in dedicated specification files:
+
+| Step | Name | Kind | Specification |
+|---|---|---|---|
+| `step_00` | Pre-Analysis | PROJECT | [step_00_pre_analysis.md](./step_00_pre_analysis.md) |
