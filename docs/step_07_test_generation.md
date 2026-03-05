@@ -1,11 +1,11 @@
 # Step 07: Test Generation — Functional Specification
 
-**Step identifier:** `step_07`  
-**Step name:** Test Generation  
-**Step kind:** `PROJECT` (see [Step Contract §2.1](./step_contract.md))  
-**AI-integrated:** Yes (see [AI Prompt Contract](./ai_prompt_contract.md))  
-**Version:** 2.0.0  
-**Status:** Draft  
+**Step identifier:** `step_07`
+**Step name:** Test Generation
+**Step kind:** `PROJECT` (see [Step Contract §2.1](./step_contract.md))
+**AI-integrated:** Yes (see [AI Prompt Contract](./ai_prompt_contract.md))
+**Version:** 2.0.0
+**Status:** Draft
 **Related:** [`step_contract.md`](./step_contract.md) · [`ai_prompt_contract.md`](./ai_prompt_contract.md)
 
 ---

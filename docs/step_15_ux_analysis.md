@@ -1,11 +1,11 @@
 # Step 15: UX Analysis — Functional Specification
 
-**Step identifier:** `step_15`  
-**Step name:** UX Analysis  
-**Step kind:** `CONTEXT` (see [Step Contract §2.2](./step_contract.md))  
-**AI-integrated:** Yes (see [AI Prompt Contract](./ai_prompt_contract.md))  
-**Version:** 2.0.0  
-**Status:** Draft  
+**Step identifier:** `step_15`
+**Step name:** UX Analysis
+**Step kind:** `CONTEXT` (see [Step Contract §2.2](./step_contract.md))
+**AI-integrated:** Yes (see [AI Prompt Contract](./ai_prompt_contract.md))
+**Version:** 2.0.0
+**Status:** Draft
 **Related:** [`step_contract.md`](./step_contract.md) · [`ai_prompt_contract.md`](./ai_prompt_contract.md)
 
 ---

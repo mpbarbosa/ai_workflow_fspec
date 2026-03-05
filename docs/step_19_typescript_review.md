@@ -1,11 +1,11 @@
 # Step 19: TypeScript Review — Functional Specification
 
-**Step identifier:** `step_19`  
-**Step name:** TypeScript Review  
-**Step kind:** `ANALYSIS` (see [Step Contract §2.3](./step_contract.md) and §2 below)  
-**AI-integrated:** Yes (see [AI Prompt Contract](./ai_prompt_contract.md))  
-**Version:** 2.0.0  
-**Status:** Draft  
+**Step identifier:** `step_19`
+**Step name:** TypeScript Review
+**Step kind:** `ANALYSIS` (see [Step Contract §2.3](./step_contract.md) and §2 below)
+**AI-integrated:** Yes (see [AI Prompt Contract](./ai_prompt_contract.md))
+**Version:** 2.0.0
+**Status:** Draft
 **Related:** [`step_contract.md`](./step_contract.md) · [`ai_prompt_contract.md`](./ai_prompt_contract.md)
 
 ---

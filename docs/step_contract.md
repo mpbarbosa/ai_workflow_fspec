@@ -1,7 +1,7 @@
 # Step Contract — Functional Specification
 
-**Module:** `steps/step_contract`  
-**Version:** 1.0.0  
+**Module:** `steps/step_contract`
+**Version:** 1.0.0
 **Status:** Draft
 
 ---

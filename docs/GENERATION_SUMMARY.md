@@ -1,6 +1,6 @@
 # Functional Spec Generation Summary
 
-**Date:** 2026-03-05  
+**Date:** 2026-03-05
 **Scope:** All 25 workflow steps in `ai_workflow.js`
 
 ---

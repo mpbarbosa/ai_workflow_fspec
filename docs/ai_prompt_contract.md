@@ -1,8 +1,8 @@
 # AI Prompt Contract — Functional Specification
 
-**Module:** `steps/ai_prompt_builder`  
-**Version:** 1.0.0  
-**Status:** Draft  
+**Module:** `steps/ai_prompt_builder`
+**Version:** 1.0.0
+**Status:** Draft
 **Related:** [`step_contract.md`](./step_contract.md)
 
 ---

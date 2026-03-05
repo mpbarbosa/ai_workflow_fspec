@@ -1,11 +1,11 @@
 # Step 11.5: AWS LBS Validation — Functional Specification
 
-**Step identifier:** `step_11_5`  
-**Step name:** AWS LBS Validation  
-**Step kind:** `PROJECT` (see [Step Contract §2.1](./step_contract.md))  
-**AI-integrated:** Conditionally — opt-in only (see §4)  
-**Version:** 2.0.0  
-**Status:** Draft  
+**Step identifier:** `step_11_5`
+**Step name:** AWS LBS Validation
+**Step kind:** `PROJECT` (see [Step Contract §2.1](./step_contract.md))
+**AI-integrated:** Conditionally — opt-in only (see §4)
+**Version:** 2.0.0
+**Status:** Draft
 **Related:** [`step_contract.md`](./step_contract.md) · [`ai_prompt_contract.md`](./ai_prompt_contract.md)
 
 ---

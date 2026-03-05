@@ -1,11 +1,11 @@
 # Step 11: Context Analysis — Functional Specification
 
-**Step identifier:** `step_11`  
-**Step name:** Context Analysis  
-**Step kind:** `CONTEXT` (see [Step Contract §2.2](./step_contract.md))  
-**AI-integrated:** No  
-**Version:** 2.0.0  
-**Status:** Draft  
+**Step identifier:** `step_11`
+**Step name:** Context Analysis
+**Step kind:** `CONTEXT` (see [Step Contract §2.2](./step_contract.md))
+**AI-integrated:** No
+**Version:** 2.0.0
+**Status:** Draft
 **Related:** [`step_contract.md`](./step_contract.md)
 
 ---

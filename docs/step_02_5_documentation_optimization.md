@@ -1,11 +1,11 @@
 # Step 02.5: Documentation Optimization — Functional Specification
 
-**Step identifier:** `step_02_5`  
-**Step name:** Documentation Optimization  
-**Step kind:** `PROJECT` (see [Step Contract §2.1](./step_contract.md))  
-**AI-integrated:** Optionally — via `aiAnalyzer` sub-component (see §4)  
-**Version:** 2.0.0  
-**Status:** Draft  
+**Step identifier:** `step_02_5`
+**Step name:** Documentation Optimization
+**Step kind:** `PROJECT` (see [Step Contract §2.1](./step_contract.md))
+**AI-integrated:** Optionally — via `aiAnalyzer` sub-component (see §4)
+**Version:** 2.0.0
+**Status:** Draft
 **Related:** [`step_contract.md`](./step_contract.md)
 
 ---

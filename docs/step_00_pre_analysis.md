@@ -1,10 +1,10 @@
 # Step 00: Pre-Analysis — Functional Specification
 
-**Step identifier:** `step_00`  
-**Step name:** Pre-Analysis  
-**Step kind:** `PROJECT` (see [Step Contract §2.1](./step_contract.md))  
-**Version:** 2.0.0  
-**Status:** Draft  
+**Step identifier:** `step_00`
+**Step name:** Pre-Analysis
+**Step kind:** `PROJECT` (see [Step Contract §2.1](./step_contract.md))
+**Version:** 2.0.0
+**Status:** Draft
 **Related:** [`step_contract.md`](./step_contract.md)
 
 ---

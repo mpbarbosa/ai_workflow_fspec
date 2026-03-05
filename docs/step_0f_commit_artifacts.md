@@ -1,10 +1,10 @@
 # Step 0f: Commit Artifacts — Functional Specification
 
-**Step identifier:** `step_0f`  
-**Step name:** Commit Artifacts  
-**Step kind:** `PROJECT` (see [Step Contract §2.1](./step_contract.md))  
-**Version:** 2.0.0  
-**Status:** Draft  
+**Step identifier:** `step_0f`
+**Step name:** Commit Artifacts
+**Step kind:** `PROJECT` (see [Step Contract §2.1](./step_contract.md))
+**Version:** 2.0.0
+**Status:** Draft
 **Related:** [`step_contract.md`](./step_contract.md)
 
 ---

@@ -1,11 +1,11 @@
 # Step 0b: Bootstrap Documentation — Functional Specification
 
-**Step identifier:** `step_0b`  
-**Step name:** Bootstrap Documentation  
-**Step kind:** `CONTEXT` (see [Step Contract §2.2](./step_contract.md))  
-**AI-integrated:** Yes (see [AI Prompt Contract](./ai_prompt_contract.md))  
-**Version:** 2.0.0  
-**Status:** Draft  
+**Step identifier:** `step_0b`
+**Step name:** Bootstrap Documentation
+**Step kind:** `CONTEXT` (see [Step Contract §2.2](./step_contract.md))
+**AI-integrated:** Yes (see [AI Prompt Contract](./ai_prompt_contract.md))
+**Version:** 2.0.0
+**Status:** Draft
 **Related:** [`step_contract.md`](./step_contract.md) · [`ai_prompt_contract.md`](./ai_prompt_contract.md)
 
 ---
