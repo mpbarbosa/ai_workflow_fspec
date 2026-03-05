@@ -92,3 +92,18 @@ Steps that call the Copilot API must comply with `ai_prompt_contract.md`. Key fi
 - **`INDEX.md`** updated: full layout tree + 25-row step specs table
 - **`docs/step_contract.md` §7** updated: 25-row specifications index
 - **Commit:** `32414fc` — _docs: add functional specs for all 25 workflow steps_
+
+---
+
+## Generation Batches
+
+Specs were produced in 6 parallel batches, each analysing a group of step source files.
+
+| Batch | Steps | Kind | Notable findings |
+|---|---|---|---|
+| A | `0f`, `11_6`, `18`, `19` | PROJECT, PROJECT·AI, ANALYSIS·AI | Steps 18/19: `STEP_DEFINITION`-only kind (documented deviation) |
+| B | `11`, `11_5`, `02_5`, `03` | CONTEXT·AI, PROJECT·AI, PROJECT | `step_02_5` uses `aiAnalyzer` (exempt from AI Prompt Contract) |
+| C | `14`, `15`, `05`, `06` | CONTEXT·AI | `step_15` has no `aiCache`; `step_06` uses global logger |
+| D | `0b`, `17`, `02`, `07` | CONTEXT·AI, CONTEXT, PROJECT·AI | `step_17` uses global logger; `step_02` partial prompt contract compliance |
+| E | `04`, `08`, `13` | PROJECT·AI, CONTEXT·AI | `step_04`/`step_08`: 2 AI calls each; `step_13`: AI skipped when lint clean |
+| F | `12`, `10`, `09`, `16` | CONTEXT·AI, PROJECT·AI | `step_16` is the only one of the four that correctly returns `{ success: false }` |
