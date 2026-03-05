@@ -5,7 +5,7 @@
 **Step kind:** `PROJECT` (see [Step Contract §2.1](./step_contract.md))
 **AI-integrated:** Yes (see [AI Prompt Contract](./ai_prompt_contract.md))
 **Version:** 2.0.0
-**Status:** Draft
+**Status:** Active
 **Related:** [`step_contract.md`](./step_contract.md) · [`ai_prompt_contract.md`](./ai_prompt_contract.md)
 
 ---
@@ -133,6 +133,23 @@ analysed file names (matched by basename or any trailing path segment) appear in
 response text. Responses below this threshold are logged as low quality but do not cause
 the step to fail or the backlog write to be suppressed.
 
+### 3.7 File-Content-Hash Guard
+
+Step 04 uses a **file-content-hash guard** instead of TTL-based caching for its AI calls.
+Before each AI API request, the guard computes a SHA256 hash of the current file contents
+(sorted for order-independence, one `"${relativePath}:${content}"` entry per file). The
+hash is compared against a value stored in `.ai_workflow/.ai_cache/step_hashes.json` from
+the previous run:
+
+- **Hash unchanged** → the stored AI response is returned immediately; no API call is made.
+- **Hash changed (or no prior entry)** → the AI function is invoked, and the new hash +
+  response are persisted for the next run.
+
+Unlike TTL-based caching (`withCache`), the guard response persists indefinitely — the API
+is called only when the input files actually change. Both AI phases (AI-1 and AI-2) share
+the same `fileHashEntries` but use different step identifiers (`step_04` and
+`step_04_quality`) so their responses are stored and invalidated independently.
+
 ---
 
 ## 4. Constructor Dependencies
@@ -204,15 +221,17 @@ preview), and best-practice issues (up to 5).
 
 Runs when the AI helper initialises successfully.
 
-1. **Initialise the response cache.** Call `aiCache.init()` before any `withCache` call.
+1. **Initialise the response cache.** Call `aiCache.init()` before any cache call.
 
 2. **Detect tech stack.** Query the tech-stack detector for the primary language and active
    frameworks. Build a comma-separated tech stack summary string. If `options.projectKind`
    is provided, use it in place of the detected language for the `project_kind` variable.
 
-3. **Build file content block.** For each discovered file, read its content and produce a
-   labelled fenced block. Content is truncated to 2,000 characters per file. Unreadable
-   files are silently skipped. (See §3.2 of the AI Prompt Contract.)
+3. **Build file content block and hash entries.** For each discovered file, read its
+   content and produce both a labelled fenced block (for the prompt) and a
+   `"${relativePath}:${content}"` hash-entry string (for the file-change guard, §3.7).
+   Content is truncated to 2,000 characters per file. Unreadable files are silently
+   skipped. (See §3.2 of the AI Prompt Contract.)
 
 4. **Build the prompt.** Load the `configuration_specialist_prompt` template from the AI
    helpers YAML configuration and populate: `project_name`, `config_files_list`,
@@ -220,8 +239,11 @@ Runs when the AI helper initialises successfully.
    is unavailable, fall back to a built-in structured prompt embedding the issue counts and
    the file content block directly.
 
-5. **Execute via cache.** Cache key: `step_04|{filesChecked}|{totalIssues}`. Persona:
-   `devops_engineer`.
+5. **Execute via file-change guard.** Call
+   `aiCache.withFileChangeGuard('step_04', fileHashEntries, fn)` where `fileHashEntries`
+   is the array of `"${relativePath}:${content}"` strings built in step 3. When the
+   SHA256 hash of these entries matches the stored hash from the prior run, the cached
+   response is returned without making an AI API call (§3.7). Persona: `devops_engineer`.
 
 6. **Validate response quality.** Apply the quality gate (§3.6). Log a warning when the
    response coverage is below the 30% threshold.
@@ -237,8 +259,10 @@ available.
 1. **Build the quality prompt.** Populate `quality_prompt` with: `files_to_review` (up
    to the first 10 discovered file paths), `project_name`.
 
-2. **Execute via cache.** Cache key: `step_04_quality|{filesChecked}|{totalIssues}`.
-   Persona: `code_quality_analyst`.
+2. **Execute via file-change guard.** Call
+   `aiCache.withFileChangeGuard('step_04_quality', fileHashEntries, fn)` reusing the same
+   `fileHashEntries` from Phase AI-1. When the hash is unchanged, the cached quality
+   response is returned without an API call (§3.7). Persona: `code_quality_analyst`.
 
 3. **Append quality review.** If a response was produced, append it to the backlog report
    under a `"Quality Review"` heading.
@@ -324,21 +348,27 @@ The skip result is `{ success: true, skipped: true, reason: 'no_config_files' }`
    built for the remaining files. (Ref: AI Prompt Contract §3.4.)
 
 5. The AI response cache **must** be initialised (via `aiCache.init()`) before the first
-   `withCache` call. Failure to do so causes a runtime error even when the first cache key
-   has never been written.
+   `withFileChangeGuard` call. Failure to do so causes a runtime error even when no prior
+   hash entry has been written.
 
-6. The primary AI call uses the `devops_engineer` persona. This persona covers the full
+6. Both AI calls (Phase AI-1 and Phase AI-2) **must** use `withFileChangeGuard` and
+   **must** pass the same `fileHashEntries` array so that a change to any discovered file
+   invalidates both cached responses independently (via their respective step identifiers).
+   Hashes are persisted in `.ai_workflow/.ai_cache/step_hashes.json`; entries survive
+   process restarts and have no TTL — they are replaced only when the hash changes.
+
+7. The primary AI call uses the `devops_engineer` persona. This persona covers the full
    scope of the `configuration_specialist_prompt` template (JSON/YAML/TOML, CI/CD, Docker,
    environment configuration). Using a narrower persona (e.g. `security_expert`) would
    create a mismatch with the broad-scope prompt content.
 
-7. The supplementary quality review call uses the `code_quality_analyst` persona, which
+8. The supplementary quality review call uses the `code_quality_analyst` persona, which
    aligns with the `quality_prompt` template's focus on anti-patterns, best practices, and
    maintainability.
 
-8. The quality gate (§3.6) **must not** cause the step to fail or suppress a backlog write.
+9. The quality gate (§3.6) **must not** cause the step to fail or suppress a backlog write.
    Low response quality is informational only.
 
-9. **Exception propagation deviation.** Callers of `execute` **must** wrap the call in
-   error handling. Step 04 does not guarantee that exceptions are converted to
-   `{ success: false }` results; unhandled exceptions are re-thrown.
+10. **Exception propagation deviation.** Callers of `execute` **must** wrap the call in
+    error handling. Step 04 does not guarantee that exceptions are converted to
+    `{ success: false }` results; unhandled exceptions are re-thrown.
