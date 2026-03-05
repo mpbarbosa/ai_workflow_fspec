@@ -211,4 +211,27 @@ Individual step behaviour is documented in dedicated specification files:
 | Step | Name | Kind | Specification |
 |---|---|---|---|
 | `step_00` | Pre-Analysis | PROJECT | [step_00_pre_analysis.md](./step_00_pre_analysis.md) |
-| `step_01` | Documentation Analysis | PROJECT | [step_01_documentation_analysis.md](./step_01_documentation_analysis.md) |
+| `step_01` | Documentation Analysis | PROJECT · AI | [step_01_documentation_analysis.md](./step_01_documentation_analysis.md) |
+| `step_02` | Doc/Code Consistency Analysis | PROJECT · AI | [step_02_consistency_analysis.md](./step_02_consistency_analysis.md) |
+| `step_02_5` | Documentation Optimization | PROJECT | [step_02_5_documentation_optimization.md](./step_02_5_documentation_optimization.md) |
+| `step_03` | Script Reference Validation | PROJECT · AI | [step_03_script_references.md](./step_03_script_references.md) |
+| `step_04` | Configuration Validation | PROJECT · AI | [step_04_config_validation.md](./step_04_config_validation.md) |
+| `step_05` | Directory Structure Analysis | PROJECT · AI | [step_05_directory_analysis.md](./step_05_directory_analysis.md) |
+| `step_06` | Test Review | CONTEXT · AI | [step_06_test_review.md](./step_06_test_review.md) |
+| `step_07` | Test Generation | PROJECT · AI | [step_07_test_generation.md](./step_07_test_generation.md) |
+| `step_08` | Test Execution | PROJECT · AI | [step_08_test_execution.md](./step_08_test_execution.md) |
+| `step_09` | Dependency Validation | PROJECT · AI | [step_09_dependency_validation.md](./step_09_dependency_validation.md) |
+| `step_0b` | Bootstrap Documentation | CONTEXT · AI | [step_0b_bootstrap_documentation.md](./step_0b_bootstrap_documentation.md) |
+| `step_0f` | Commit Artifacts | PROJECT | [step_0f_commit_artifacts.md](./step_0f_commit_artifacts.md) |
+| `step_10` | Code Quality Analysis | PROJECT · AI | [step_10_code_quality.md](./step_10_code_quality.md) |
+| `step_11` | Context Health Analysis | CONTEXT · AI | [step_11_context_analysis.md](./step_11_context_analysis.md) |
+| `step_11_5` | AWS LBS Validation | PROJECT · AI | [step_11_5_aws_lbs_validation.md](./step_11_5_aws_lbs_validation.md) |
+| `step_11_6` | AWS Serverless Review | PROJECT · AI | [step_11_6_aws_serverless_review.md](./step_11_6_aws_serverless_review.md) |
+| `step_12` | Git Finalization | CONTEXT · AI | [step_12_git_finalization.md](./step_12_git_finalization.md) |
+| `step_13` | Markdown Lint | CONTEXT · AI | [step_13_markdown_lint.md](./step_13_markdown_lint.md) |
+| `step_14` | Prompt Engineering Review | CONTEXT · AI | [step_14_prompt_engineering.md](./step_14_prompt_engineering.md) |
+| `step_15` | UX Analysis | CONTEXT · AI | [step_15_ux_analysis.md](./step_15_ux_analysis.md) |
+| `step_16` | Version Update | CONTEXT · AI | [step_16_version_update.md](./step_16_version_update.md) |
+| `step_17` | Workflow Summary | CONTEXT | [step_17_workflow_summary.md](./step_17_workflow_summary.md) |
+| `step_18` | Debugging Analysis | ANALYSIS · AI | [step_18_debugging.md](./step_18_debugging.md) |
+| `step_19` | TypeScript Review | ANALYSIS · AI | [step_19_typescript_review.md](./step_19_typescript_review.md) |

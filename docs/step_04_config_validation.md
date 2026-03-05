@@ -1,0 +1,344 @@
+# Step 04: Configuration Validation — Functional Specification
+
+**Step identifier:** `step_04`
+**Step name:** Configuration Validation
+**Step kind:** `PROJECT` (see [Step Contract §2.1](./step_contract.md))
+**AI-integrated:** Yes (see [AI Prompt Contract](./ai_prompt_contract.md))
+**Version:** 2.0.0
+**Status:** Draft
+**Related:** [`step_contract.md`](./step_contract.md) · [`ai_prompt_contract.md`](./ai_prompt_contract.md)
+
+---
+
+## 1. Purpose
+
+Step 04 validates configuration files within the project for syntax correctness, exposed
+secrets, and adherence to authoring best practices. It combines static analysis (syntax
+parsing, secret pattern matching, best-practice rules) with AI-powered review to produce
+actionable remediation guidance.
+
+The step discovers configuration files either from the git working tree (modified files
+only, preferred) or from a filesystem glob scan (fallback when the tree is clean or git is
+unavailable). It then applies four sequential checks to each discovered file and, when the
+AI is available, invites two AI personas to produce targeted recommendations.
+
+---
+
+## 2. Step Kind Conformance
+
+Step 04 conforms to the **PROJECT** step kind as defined in `step_contract.md §2.1`.
+
+| Property | Value |
+|---|---|
+| Kind identifier | `"project"` |
+| Execute signature | `execute(projectRoot, options?) → Promise<StepResult>` |
+| Can be skipped | **Yes** — when no configuration files are discovered |
+| AI-integrated | **Yes** — two AI calls (`devops_engineer` and `code_quality_analyst` personas) |
+
+**Error-handling deviation.** Step 04 re-throws unhandled exceptions from `execute` rather
+than returning `{ success: false, error }`. This deviates from step contract rule 4
+(§5.4 of `step_contract.md`). Callers must be prepared to catch exceptions propagated
+from this step.
+
+**AI Prompt Contract conformance.** Step 04 conforms to
+[`ai_prompt_contract.md`](./ai_prompt_contract.md). Actual file content is injected into
+the primary AI prompt using a content-block builder that renders each file as a fenced code
+block with its relative path as a header. Content is truncated to 2,000 characters per
+file to limit token usage. File reads are individually wrapped in error handlers so that an
+unreadable file is silently skipped rather than aborting prompt construction.
+
+---
+
+## 3. Domain Concepts
+
+### 3.1 Configuration File Types
+
+Files are categorised into named types based on their filename or extension. Types are
+evaluated in priority order (first match wins):
+
+| Type | Matching Rule |
+|---|---|
+| `ci` | GitHub Actions workflow YAML, CircleCI config, GitLab CI, Jenkinsfile |
+| `docker` | `Dockerfile`, `.dockerignore`, `docker-compose.*.yaml` |
+| `editor` | `.editorconfig`, `.nvmrc`, `.node-version`, `.mdlrc` |
+| `git` | `.gitignore` |
+| `make` | `Makefile` |
+| `env` | `.env`, `.env.<suffix>` |
+| `toml` | `.toml` extension |
+| `ini` | `.ini` extension |
+| `yaml` | `.yaml` or `.yml` extension |
+| `json` | `.json` or `.jsonc` extension |
+| `unknown` | Anything else recognised as a configuration file |
+
+### 3.2 Configuration File Discovery
+
+Files are discovered using a two-strategy approach:
+
+**Strategy 1 — Git-modified (preferred).** Query git for the list of currently modified
+files. Retain only those that match a recognised configuration type and are not located
+under an excluded directory. If this yields at least one file, discovery ends here.
+
+**Strategy 2 — Glob fallback.** Activated when git is unavailable or returns no
+matching files. Glob for `**/*.json`, `**/*.yaml`, `**/*.yml`, `**/.env*`, and
+`**/Dockerfile` under `projectRoot`. Filter results to those matching a recognised
+configuration type. De-duplicate the combined list before returning.
+
+Excluded directories (applied to both strategies):
+`node_modules`, `.git`, `dist`, `build`, `coverage`, `.ai_cache`, `venv`, `.venv`, `env`.
+
+### 3.3 Syntax Validation
+
+Each file is validated according to its type:
+
+| Types | Validation |
+|---|---|
+| `json` | Parse after stripping JSONC-style comments (`//` and `/* … */`). Syntax errors include message and, when available, line and column numbers. |
+| `yaml` | Line-by-line check for tab characters (prohibited in YAML) and indentation that is not a multiple of two. Block scalars (`\|`, `>`) are detected and skipped to prevent false positives. |
+| `toml`, `ini`, `env`, `docker`, `ci` | Basic validation only; no structural parsing. |
+
+A read failure for any individual file is silently skipped and does not produce a syntax
+error.
+
+### 3.4 Secret Pattern Detection
+
+Each file is scanned line-by-line against six regular-expression patterns:
+
+| Pattern name | What it matches |
+|---|---|
+| AWS Key | AWS access key identifiers (`AKIA…`) |
+| API Key | Key-value pairs whose key includes `api_key` or `apikey` |
+| Private Key | PEM private key headers |
+| OAuth Token | Key-value pairs whose key includes `oauth` or `token` |
+| Password | Key-value pairs whose key includes `password`, `passwd`, or `pwd` |
+| Secret Key | Key-value pairs whose key includes `secret_key` or `secretkey` |
+
+Files whose path contains `.env.example` or `.env.template` are entirely excluded from
+secret scanning; these files are designed to hold placeholder values.
+
+### 3.5 Best Practice Checks
+
+Two format-specific checks are applied:
+
+| Type | Issue | Description |
+|---|---|---|
+| `json` | Comments present | Strict JSON does not support comments; presence of `//` or `/* … */` is flagged |
+| `json` | Trailing commas | Trailing commas before `}` or `]` are invalid in strict JSON |
+| `yaml` | `yes`/`no` booleans | `yes` and `no` are deprecated boolean literals; `true`/`false` should be used instead |
+
+### 3.6 AI Response Quality Gate
+
+After the primary AI call, the response text is checked to ensure it adequately covers the
+files it was asked to review. A response is considered adequate when at least 30% of the
+analysed file names (matched by basename or any trailing path segment) appear in the
+response text. Responses below this threshold are logged as low quality but do not cause
+the step to fail or the backlog write to be suppressed.
+
+---
+
+## 4. Constructor Dependencies
+
+Step 04 receives all external collaborators at construction time via a single options map.
+Each dependency falls back to a freshly instantiated default when absent.
+
+| Dependency key | Role | Behaviour when absent |
+|---|---|---|
+| `fileOps` | Reads file contents and executes glob patterns | Falls back to a new file-operations instance |
+| `backlog` | Writes step summaries to the workflow artifact store | Falls back to a new backlog instance |
+| `gitOps` | Queries git for the list of modified files | Falls back to a new git-automation instance |
+| `aiHelper` | Executes AI API requests | Falls back to a new AI helper instance |
+| `aiCache` | Caches and retrieves AI responses by key | Falls back to a new AI cache instance |
+| `techStack` | Detects the project's primary language and active frameworks | Falls back to a new tech-stack detector instance |
+| `promptsDir` | Directory path for AI prompt templates | Passed to the AI helper; `null` when absent |
+
+---
+
+## 5. Execute Behaviour
+
+### 5.1 Inputs
+
+| Parameter | Description |
+|---|---|
+| `projectRoot` | Absolute path to the root of the project under analysis |
+| `options.projectKind` | Optional project-kind hint. When present, overrides tech-stack detection for AI prompt context. |
+
+### 5.2 Execution Phases
+
+Step 04 executes the following phases in order:
+
+#### Phase 1 — Discover Configuration Files
+
+Apply the two-strategy discovery process (§3.2) to `projectRoot`. If no configuration
+files are found, log the absence and skip immediately:
+
+```
+{ success: true, skipped: true, reason: 'no_config_files' }
+```
+
+No further phases execute.
+
+#### Phase 2 — Syntax Validation
+
+For each discovered file, determine its configuration type (§3.1) and apply the
+appropriate syntax check (§3.3). Collect all syntax errors across all files. Log the total
+error count, and log each individual error with its file and line number.
+
+#### Phase 3 — Secret Scanning
+
+For each discovered file, apply the secret pattern scan (§3.4). Collect all security
+findings across all files. Log the total finding count.
+
+#### Phase 4 — Best Practice Checks
+
+For each discovered file, apply the best-practice rules (§3.5). Collect all issues across
+all files. Log the total issue count.
+
+#### Phase 5 — Report Generation
+
+Assemble the counts from Phases 2–4 into a results record (see §6.1). Generate a
+formatted Markdown report and write it to the workflow backlog under step `4`, section
+`"Configuration Validation"`. The report includes: summary counts, syntax error details
+(up to 10, with file and line), security finding details (up to 10, with type and a line
+preview), and best-practice issues (up to 5).
+
+#### Phase AI-1 — Primary AI Analysis (Conditional)
+
+Runs when the AI helper initialises successfully.
+
+1. **Initialise the response cache.** Call `aiCache.init()` before any `withCache` call.
+
+2. **Detect tech stack.** Query the tech-stack detector for the primary language and active
+   frameworks. Build a comma-separated tech stack summary string. If `options.projectKind`
+   is provided, use it in place of the detected language for the `project_kind` variable.
+
+3. **Build file content block.** For each discovered file, read its content and produce a
+   labelled fenced block. Content is truncated to 2,000 characters per file. Unreadable
+   files are silently skipped. (See §3.2 of the AI Prompt Contract.)
+
+4. **Build the prompt.** Load the `configuration_specialist_prompt` template from the AI
+   helpers YAML configuration and populate: `project_name`, `config_files_list`,
+   `config_files_content`, `config_count`, `project_kind`, `tech_stack`. When the template
+   is unavailable, fall back to a built-in structured prompt embedding the issue counts and
+   the file content block directly.
+
+5. **Execute via cache.** Cache key: `step_04|{filesChecked}|{totalIssues}`. Persona:
+   `devops_engineer`.
+
+6. **Validate response quality.** Apply the quality gate (§3.6). Log a warning when the
+   response coverage is below the 30% threshold.
+
+7. **Write enriched backlog entry.** If an AI response was produced, append it to the
+   backlog report under an `"AI Recommendations"` heading.
+
+#### Phase AI-2 — Quality Review (Conditional, Supplementary)
+
+Runs when the AI helper initialised successfully and the `quality_prompt` YAML template is
+available.
+
+1. **Build the quality prompt.** Populate `quality_prompt` with: `files_to_review` (up
+   to the first 10 discovered file paths), `project_name`.
+
+2. **Execute via cache.** Cache key: `step_04_quality|{filesChecked}|{totalIssues}`.
+   Persona: `code_quality_analyst`.
+
+3. **Append quality review.** If a response was produced, append it to the backlog report
+   under a `"Quality Review"` heading.
+
+When the AI helper is unavailable, both AI phases are skipped with a warning logged.
+
+### 5.3 Skip Conditions
+
+| Reason | Condition |
+|---|---|
+| `no_config_files` | No configuration files discovered after applying both discovery strategies |
+
+The skip result is `{ success: true, skipped: true, reason: 'no_config_files' }`.
+
+---
+
+## 6. Data Shapes
+
+### 6.1 StepResult (success, not skipped)
+
+| Field | Type | Description |
+|---|---|---|
+| `success` | `true` | Step completed without a fatal error |
+| `filesChecked` | Integer | Count of configuration files discovered and processed |
+| `syntaxErrors` | SyntaxError[] | Syntax errors from Phase 2 (§6.2) |
+| `securityFindings` | SecurityFinding[] | Secret detections from Phase 3 (§6.3) |
+| `bestPracticeIssues` | BestPracticeIssue[] | Best-practice violations from Phase 4 (§6.4) |
+
+### 6.2 SyntaxError
+
+| Field | Type | Description |
+|---|---|---|
+| `file` | String | Absolute path to the file |
+| `type` | String | Configuration type identifier (e.g. `'json'`, `'yaml'`) |
+| `error` | String | Parse error message (JSON-type errors) |
+| `line` | Integer or absent | Line number of the error, when available |
+| `column` | Integer or absent | Column number of the error, when available |
+| `issues` | Object[] or absent | YAML-style issue list (used for YAML errors instead of `error`) |
+
+### 6.3 SecurityFinding
+
+| Field | Type | Description |
+|---|---|---|
+| `type` | `'security_risk'` | Always this value |
+| `secretType` | String | Human-readable pattern label (e.g. `'AWS Key'`, `'Password'`) |
+| `line` | Integer | Line number where the pattern was matched |
+| `file` | String | Absolute path to the file |
+| `preview` | String | First 50 characters of the matching line (truncated with `…` when longer) |
+
+### 6.4 BestPracticeIssue
+
+| Field | Type | Description |
+|---|---|---|
+| `type` | String | Issue type identifier: `'syntax_error'` or `'invalid_value'` |
+| `message` | String | Human-readable description of the issue |
+
+### 6.5 StepResult (skip)
+
+| Field | Type | Description |
+|---|---|---|
+| `success` | `true` | — |
+| `skipped` | `true` | — |
+| `reason` | `'no_config_files'` | No configuration files were discovered |
+
+---
+
+## 7. Constraints and Rules
+
+1. The step **must** prefer git-modified files over a glob scan when git is available and
+   returns at least one matching configuration file. Performing a glob scan when git has
+   already identified the relevant files wastes I/O and may include irrelevant unchanged
+   files.
+
+2. Files located under any excluded directory (§3.2) **must** be filtered out regardless
+   of which discovery strategy is used.
+
+3. `.env.example` and `.env.template` files **must** be excluded from secret scanning
+   (§3.4). These files exist specifically to document the expected shape of secrets without
+   holding real values.
+
+4. Each file read during Phase AI-1 prompt construction **must** be wrapped individually
+   in an error handler. A single unreadable file must not prevent the prompt from being
+   built for the remaining files. (Ref: AI Prompt Contract §3.4.)
+
+5. The AI response cache **must** be initialised (via `aiCache.init()`) before the first
+   `withCache` call. Failure to do so causes a runtime error even when the first cache key
+   has never been written.
+
+6. The primary AI call uses the `devops_engineer` persona. This persona covers the full
+   scope of the `configuration_specialist_prompt` template (JSON/YAML/TOML, CI/CD, Docker,
+   environment configuration). Using a narrower persona (e.g. `security_expert`) would
+   create a mismatch with the broad-scope prompt content.
+
+7. The supplementary quality review call uses the `code_quality_analyst` persona, which
+   aligns with the `quality_prompt` template's focus on anti-patterns, best practices, and
+   maintainability.
+
+8. The quality gate (§3.6) **must not** cause the step to fail or suppress a backlog write.
+   Low response quality is informational only.
+
+9. **Exception propagation deviation.** Callers of `execute` **must** wrap the call in
+   error handling. Step 04 does not guarantee that exceptions are converted to
+   `{ success: false }` results; unhandled exceptions are re-thrown.
