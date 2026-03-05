@@ -13,6 +13,7 @@ AI-assisted workflow programming model. All specification documents are in `docs
 ai_workflow_fspec/
 ├── INDEX.md                                          ← this file
 ├── README.md                                         ← project overview
+├── ROADMAP.md                                        ← quality-evaluation prompt roadmap
 ├── LICENSE                                           ← MIT
 └── docs/
     ├── step_contract.md                              ← step execution contract (core spec)
