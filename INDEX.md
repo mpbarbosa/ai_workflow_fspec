@@ -9,13 +9,14 @@ AI-assisted workflow programming model. All specification documents are in `docs
 
 ```
 ai_workflow_fspec/
-├── INDEX.md                        ← this file
-├── README.md                       ← project overview
-├── LICENSE                         ← MIT
+├── INDEX.md                                    ← this file
+├── README.md                                   ← project overview
+├── LICENSE                                     ← MIT
 └── docs/
-    ├── step_contract.md            ← step execution contract (core spec)
-    ├── ai_prompt_contract.md       ← AI prompt hygiene contract
-    └── step_00_pre_analysis.md     ← step 00: pre-analysis specification
+    ├── step_contract.md                        ← step execution contract (core spec)
+    ├── ai_prompt_contract.md                   ← AI prompt hygiene contract
+    ├── step_00_pre_analysis.md                 ← step 00: pre-analysis specification
+    └── step_01_documentation_analysis.md       ← step 01: documentation analysis specification
 ```
 
 ---
@@ -40,6 +41,7 @@ behaviour, data shapes, and constraints — not implementation.
 | Step | Name | Kind | Document |
 |---|---|---|---|
 | `step_00` | Pre-Analysis | PROJECT | [`docs/step_00_pre_analysis.md`](docs/step_00_pre_analysis.md) |
+| `step_01` | Documentation Analysis | PROJECT · AI | [`docs/step_01_documentation_analysis.md`](docs/step_01_documentation_analysis.md) |
 
 ---
 

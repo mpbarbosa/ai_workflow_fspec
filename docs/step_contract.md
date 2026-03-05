@@ -211,3 +211,4 @@ Individual step behaviour is documented in dedicated specification files:
 | Step | Name | Kind | Specification |
 |---|---|---|---|
 | `step_00` | Pre-Analysis | PROJECT | [step_00_pre_analysis.md](./step_00_pre_analysis.md) |
+| `step_01` | Documentation Analysis | PROJECT | [step_01_documentation_analysis.md](./step_01_documentation_analysis.md) |
