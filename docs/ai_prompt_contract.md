@@ -206,6 +206,26 @@ constructor(deps = {}) {
 - `executeRequest(prompt, options?) → Promise<string>` — executes a single AI request and
   returns the model response as a string.
 
+#### Streaming injection (orchestrator-managed)
+
+When the orchestrator is started with `verbose: true` or `streamingEnabled: true` (set
+via the CLI `--verbose` flag or TUI mode), it pre-configures the `aiHelper` instance
+injected into each step with a `streamingCallback`. This callback forwards every token
+delta to the workflow engine as an `ai:stream:chunk` event, enabling real-time display in
+the TUI stream panel.
+
+Steps **do not need to do anything differently** to support streaming. They call
+`executeRequest` as normal; the streaming behaviour is entirely managed by the injected
+`aiHelper`. A step must not assume the absence or presence of a streaming callback —
+both cases must produce a correct `StepResult`.
+
+**Orchestrator options that affect `aiHelper` injection:**
+
+| Option | CLI flag | Effect |
+|---|---|---|
+| `verbose` | `--verbose` | Enables detailed logging **and** implies `streamingEnabled: true` |
+| `streamingEnabled` | (derived) | `true` when `verbose` or TUI mode is active; triggers streaming `aiHelper` |
+
 ### 6.2 `aiCache`
 
 Steps that cache AI responses use `aiCache`. The dependency is injected via the
