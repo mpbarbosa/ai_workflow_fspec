@@ -78,7 +78,13 @@ If no such file is found, the step skips and saves a minimal skip report to the 
 
 Step 19 discovers TypeScript source files by scanning the project root for files
 matching `**/*.ts` and `**/*.tsx`. The following directories are excluded from
-scanning: `node_modules`, `.git`, `dist`, `build`, `coverage`, `test`, `__tests__`.
+scanning: `node_modules`, `.git`, `dist`, `build`, `coverage`, `test`, `__tests__`,
+`docs`.
+
+The `docs` directory is excluded because it contains only documentation files (Markdown,
+generated HTML assets, API references, etc.). TypeDoc-generated JavaScript bundles and
+search indices found under `docs/api/html/` are not TypeScript source and must not be
+injected into a TypeScript review prompt.
 
 The result is de-duplicated. The total list is capped at **100 files**.
 
@@ -415,3 +421,8 @@ heading and a note that no TypeScript files were detected.
 10. The total TypeScript file list **must** be de-duplicated and capped at 100 files
     before sampling. The cap is applied in discovery (§3.2); the sample window (§3.3)
     is applied afterward.
+
+11. **The `docs` directory must never be included in TypeScript source file discovery.**
+    The `docs` folder contains only documentation files and generated assets (Markdown,
+    TypeDoc HTML, search indices, navigation data, etc.). These are not TypeScript
+    source and must not be injected into a TypeScript review prompt.

@@ -70,7 +70,13 @@ extensions. The supported extensions are:
 | Go | `.go` |
 
 The following directories are excluded from scanning: `node_modules`, `.git`, `dist`,
-`build`, `coverage`, `test`, `__tests__`.
+`build`, `coverage`, `test`, `__tests__`, `docs`.
+
+The `docs` directory is excluded because it contains only documentation files (Markdown,
+generated HTML assets, API references, etc.). Injecting documentation-folder files into
+a source-code debugging prompt is incorrect and wasteful — generated assets such as
+TypeDoc HTML bundles, search indices, and navigation data are not source code and
+would pollute the AI analysis with irrelevant content.
 
 The result is de-duplicated. The total list is capped at **100 files**. When
 `options.sourceFiles` is provided, discovery is bypassed entirely.
@@ -374,3 +380,9 @@ Persona labels are:
 
 8. The `aiCache.init()` call **must** be made before the first `withCache` call, as
    required by the [AI Prompt Contract §6.2](./ai_prompt_contract.md).
+
+9. **The `docs` directory must never be included in source file discovery.** The `docs`
+   folder contains only documentation files (Markdown, generated HTML, API references,
+   search indices, etc.) and must be excluded from all glob scans. Injecting
+   documentation assets into a debugging prompt is incorrect and violates the principle
+   that prompts must contain only relevant source code.
