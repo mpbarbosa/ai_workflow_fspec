@@ -1,3 +1,5 @@
+## INDEX
+
 # ai_workflow_fspec — Document Index
 
 This repository contains the **language-independent functional specification** for the
@@ -65,48 +67,71 @@ behaviour, data shapes, and constraints — not implementation.
 |---|---|---|---|
 | `step_00` | Pre-Analysis | PROJECT | [`docs/step_00_pre_analysis.md`](docs/step_00_pre_analysis.md) |
 | `step_01` | Documentation Analysis | PROJECT · AI | [`docs/step_01_documentation_analysis.md`](docs/step_01_documentation_analysis.md) |
-| `step_02` | Doc/Code Consistency Analysis | PROJECT · AI | [`docs/step_02_consistency_analysis.md`](docs/step_02_consistency_analysis.md) |
-| `step_02_5` | Documentation Optimization | PROJECT | [`docs/step_02_5_documentation_optimization.md`](docs/step_02_5_documentation_optimization.md) |
-| `step_03` | Script Reference Validation | PROJECT · AI | [`docs/step_03_script_references.md`](docs/step_03_script_references.md) |
-| `step_04` | Configuration Validation | PROJECT · AI | [`docs/step_04_config_validation.md`](docs/step_04_config_validation.md) |
-| `step_05` | Directory Structure Analysis | PROJECT · AI | [`docs/step_05_directory_analysis.md`](docs/step_05_directory_analysis.md) |
-| `step_06` | Test Review | CONTEXT · AI | [`docs/step_06_test_review.md`](docs/step_06_test_review.md) |
-| `step_07` | Test Generation | PROJECT · AI | [`docs/step_07_test_generation.md`](docs/step_07_test_generation.md) |
-| `step_08` | Test Execution | PROJECT · AI | [`docs/step_08_test_execution.md`](docs/step_08_test_execution.md) |
-| `step_09` | Dependency Validation | PROJECT · AI | [`docs/step_09_dependency_validation.md`](docs/step_09_dependency_validation.md) |
-| `step_0b` | Bootstrap Documentation | CONTEXT · AI | [`docs/step_0b_bootstrap_documentation.md`](docs/step_0b_bootstrap_documentation.md) |
-| `step_0f` | Commit Artifacts | PROJECT | [`docs/step_0f_commit_artifacts.md`](docs/step_0f_commit_artifacts.md) |
-| `step_10` | Code Quality Analysis | PROJECT · AI | [`docs/step_10_code_quality.md`](docs/step_10_code_quality.md) |
-| `step_11` | Context Health Analysis | CONTEXT · AI | [`docs/step_11_context_analysis.md`](docs/step_11_context_analysis.md) |
-| `step_11_5` | AWS LBS Validation | PROJECT · AI | [`docs/step_11_5_aws_lbs_validation.md`](docs/step_11_5_aws_lbs_validation.md) |
-| `step_11_6` | AWS Serverless Review | PROJECT · AI | [`docs/step_11_6_aws_serverless_review.md`](docs/step_11_6_aws_serverless_review.md) |
-| `step_12` | Git Finalization | CONTEXT · AI | [`docs/step_12_git_finalization.md`](docs/step_12_git_finalization.md) |
-| `step_13` | Markdown Lint | CONTEXT · AI | [`docs/step_13_markdown_lint.md`](docs/step_13_markdown_lint.md) |
-| `step_14` | Prompt Engineering Review | CONTEXT · AI | [`docs/step_14_prompt_engineering.md`](docs/step_14_prompt_engineering.md) |
-| `step_15` | UX Analysis | CONTEXT · AI | [`docs/step_15_ux_analysis.md`](docs/step_15_ux_analysis.md) |
-| `step_16` | Version Update | CONTEXT · AI | [`docs/step_16_version_update.md`](docs/step_16_version_update.md) |
-| `step_17` | Workflow Summary | CONTEXT | [`docs/step_17_workflow_summary.md`](docs/step_17_workflow_summary.md) |
-| `step_18` | Debugging Analysis | ANALYSIS · AI | [`docs/step_18_debugging.md`](docs/step_18_debugging.md) |
-| `step_19` | TypeScript Review | ANALYSIS · AI | [`docs/step_19_typescript_review.md`](docs/step_19_typescript_review.md) |
+| `step_02` | Doc/Code Consistency Analysis | PROJ
 
 ---
 
-## Reading Order
+## GENERATION_SUMMARY
 
-For a new contributor or implementer, the recommended reading order is:
+# Functional Spec Generation Summary
 
-1. [`docs/step_contract.md`](docs/step_contract.md) — understand step kinds and the result contract
-2. [`docs/ai_prompt_contract.md`](docs/ai_prompt_contract.md) — understand AI prompt rules (relevant only for AI-integrated steps)
-3. The step specification for the step you are implementing or reviewing
+**Date:** 2026-03-05
+**Scope:** All 25 workflow steps in `ai_workflow.js`
 
 ---
 
-## Document Status Legend
+## Overview
 
-| Status | Meaning |
+Language-agnostic functional requirement specifications were generated for all 25 workflow
+steps. Each document follows the format defined in `step_contract.md` and is free of
+implementation-language references.
+
+---
+
+## Spec Files Generated
+
+| Step | Name | Kind | AI | File |
+|---|---|---|---|---|
+| `step_00` | Pre-Analysis | PROJECT | — | `step_00_pre_analysis.md` |
+| `step_01` | Documentation Analysis | PROJECT | `documentation_expert` | `step_01_documentation_analysis.md` |
+| `step_02` | Doc/Code Consistency Analysis | PROJECT | `documentation_expert` | `step_02_consistency_analysis.md` |
+| `step_02_5` | Documentation Optimization | PROJECT | opt-in (`aiAnalyzer`) | `step_02_5_documentation_optimization.md` |
+| `step_03` | Script Reference Validation | PROJECT | `devops_engineer` | `step_03_script_references.md` |
+| `step_04` | Configuration Validation | PROJECT | `devops_engineer` + `code_quality_analyst` | `step_04_config_validation.md` |
+| `step_05` | Directory Structure Analysis | PROJECT | `architecture_reviewer` × 2 | `step_05_directory_analysis.md` |
+| `step_06` | Test Review | CONTEXT | `test_engineer` (partition-rotate) | `step_06_test_review.md` |
+| `step_07` | Test Generation | PROJECT | `test_engineer` | `step_07_test_generation.md` |
+| `step_08` | Test Execution | PROJECT | `test_engineer` × 2 | `step_08_test_execution.md` |
+| `step_09` | Dependency Validation | PROJECT | `dependency_analyst` × 2 | `step_09_dependency_validation.md` |
+| `step_0b` | Bootstrap Documentation | CONTEXT | `technical_writer` | `step_0b_bootstrap_documentation.md` |
+| `step_0f` | Commit Artifacts | PROJECT | — | `step_0f_commit_artifacts.md` |
+| `step_10` | Code Quality Analysis | PROJECT | `code_quality_analyst` (partition-rotate) | `step_10_code_quality.md` |
+| `step_11` | Context Health Analysis | CONTEXT | `health_check` | `step_11_context_analysis.md` |
+| `step_11_5` | AWS LBS Validation | PROJECT | `devops_engineer` (opt-in) | `step_11_5_aws_lbs_validation.md` |
+| `step_11_6` | AWS Serverless Review | PROJECT | `aws_serverless_engineer` (opt-in) | `step_11_6_aws_serverless_review.md` |
+| `step_12` | Git Finalization | CONTEXT | `git_specialist` | `step_12_git_finalization.md` |
+| `step_13` | Markdown Lint | CONTEXT | `technical_writer` (skipped when clean) | `step_13_markdown_lint.md` |
+| `step_14` | Prompt Engineering Review | CONTEXT | `prompt_engineer` | `step_14_prompt_engineering.md` |
+| `step_15` | UX Analysis | CONTEXT | `ux_analyst` (no `aiCache`) | `step_15_ux_analysis.md` |
+| `step_16` | Version Update | CONTEXT | `devops_engineer` | `step_16_version_update.md` |
+| `step_17` | Workflow Summary | CONTEXT | — | `step_17_workflow_summary.md` |
+| `step_18` | Debugging Analysis | ANALYSIS | `debug_analyst` (STEP_DEFINITION-only kind) | `step_18_debugging.md` |
+| `step_19` | TypeScript Review | ANALYSIS | `typescript_reviewer` (reference prompt impl) | `step_19_typescript_review.md` |
+
+---
+
+## Cross-Cutting Findings
+
+### Deviations from `step_contract.md`
+
+The following deviations from the step execution contract were found across the codebase
+and are documented in the §2 and §7 sections of the relevant spec files.
+
+| Deviation | Steps affected |
 |---|---|
-| Draft | Content is complete but not yet formally reviewed |
-| Review | Under active review; may change |
-| Approved | Reviewed, stable, changes require a spec revision |
-
-All current documents are at **Draft** status.
+| Re-throws exceptions instead of returning `{ success: false, error }` | `step_01`, `step_02`, `step_03`, `step_05`, `step_06`, `step_07`, `step_08`, `step_09`, `step_10`, `step_11`, `step_12`, `step_13`, `step_14` |
+| `ANALYSIS` kind declared only in `STEP_DEFINITION`, not as a class property | `step_18`, `step_19` |
+| Uses global logger singleton instead of injected `this.logger` | `step_06`, `step_11`, `step_17` |
+| No `aiCache` dependency (AI-integrated CONTEXT step) | `step_15` |
+| Uses `aiAnalyzer` instead of `aiHelper`/`aiCache` — exempt from AI Prompt Contract | `step_02_5` |
+| Skip represented as `{ noFiles: true }` instead of `{ ski
