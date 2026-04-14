@@ -44,8 +44,10 @@ from this step.
 [`ai_prompt_contract.md`](./ai_prompt_contract.md). Actual file content is injected into
 the primary AI prompt using a content-block builder that renders each file as a fenced code
 block with its relative path as a header. Content is truncated to 2,000 characters per
-file to limit token usage. File reads are individually wrapped in error handlers so that an
-unreadable file is silently skipped rather than aborting prompt construction.
+file to limit token usage, and the prompt explicitly instructs the AI to treat truncation
+markers as partial evidence rather than as a basis for full-file success claims. File reads
+are individually wrapped in error handlers so that an unreadable file is silently skipped
+rather than aborting prompt construction.
 
 ---
 
@@ -230,8 +232,10 @@ Runs when the AI helper initialises successfully.
 3. **Build file content block and hash entries.** For each discovered file, read its
    content and produce both a labelled fenced block (for the prompt) and a
    `"${relativePath}:${content}"` hash-entry string (for the file-change guard, §3.7).
-   Content is truncated to 2,000 characters per file. Unreadable files are silently
-   skipped. (See §3.2 of the AI Prompt Contract.)
+   Content is truncated to 2,000 characters per file. The prompt must direct the AI to
+   treat any truncation marker as partial evidence only and to report the omitted remainder
+   as inconclusive rather than validated. Unreadable files are silently skipped. (See §3.2
+   of the AI Prompt Contract.)
 
 4. **Build the prompt.** Load the `configuration_specialist_prompt` template from the AI
    helpers YAML configuration and populate: `project_name`, `config_files_list`,

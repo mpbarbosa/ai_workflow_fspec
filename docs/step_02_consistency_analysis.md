@@ -134,9 +134,9 @@ A low-quality response causes a warning to be logged. It does not cause the step
 ### 3.7 Project-Kind Role Overlay
 
 When a project-kind configuration file is available, Step 02 loads the role definition
-for the `code_reviewer` role within the detected project kind and prepends it to each
-partition prompt as a role declaration. This overlays project-specific expertise onto the
-base `documentation_expert` persona.
+for the `documentation_specialist` role within the detected project kind and prepends it
+to each partition prompt as a role declaration. This overlays project-specific
+documentation expertise onto the base `documentation_expert` persona.
 
 ---
 
@@ -239,14 +239,14 @@ loads are optional; failure is silently ignored.
 files into partitions of at most 50 files (§3.5). For each partition:
 
 1. Build the prompt context (documentation file list, broken-references list, partition
-   header).
+   header, and injected markdown file contents for the current partition).
 2. Construct the prompt:
-   - When the YAML configuration is available, use the `step2_consistency_prompt` template
-     with substitution of `project_name`, `project_description`, `primary_language`,
-     `change_scope`, `doc_count`, `modified_count`, `broken_refs_content`, and `doc_files`.
-     Prepend the role overlay (§3.7) and partition header when present.
-   - When the YAML configuration is unavailable, use the built-in consistency prompt
-     builder and prepend the partition header.
+    - When the YAML configuration is available, use the `step2_consistency_prompt` template
+      with substitution of `project_name`, `project_description`, `primary_language`,
+      `change_scope`, `doc_count`, `modified_count`, `broken_refs_content`, `doc_files`,
+      and `file_contents`. Prepend the role overlay (§3.7) and partition header when present.
+    - When the YAML configuration is unavailable, use the built-in consistency prompt
+      builder and prepend the partition header.
 3. Hard-truncate the prompt at 60,000 characters (§3.5), logging a warning when
    truncation occurs.
 4. Submit to the AI using the cache key
@@ -365,6 +365,8 @@ version.
    dotfile directories. A single-pass glob that omits dotfiles causes links into `.github/`
    and similar directories to be incorrectly classified as broken.
 
-9. Step 02 does not inject file contents into AI prompts. It provides only file lists and
-   broken-reference summaries. Implementors adding content injection in future must do so in
-   accordance with the [AI Prompt Contract §3](./ai_prompt_contract.md).
+9. Step 02 injects the current partition's markdown file contents into AI prompts, following
+   the file-content budgeting and truncation rules from the [AI Prompt Contract §3](./ai_prompt_contract.md).
+   Content-level conclusions about headings, terminology, examples, or inline code blocks must
+   stay grounded in those injected excerpts; when the relevant evidence is absent, the step
+   must require an unavailable or inconclusive result rather than a success claim.

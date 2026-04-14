@@ -72,10 +72,13 @@ Hyphens in the incoming project type are normalised to underscores before matchi
 ### 3.2 UI File Detection Fallback
 
 When the project type is not in the eligible list, the step does not skip immediately.
-Instead, it performs a filesystem probe: it scans the project directory for files
-matching any recognised UI extension (§3.3). If UI files are found, the step proceeds
-as if the project type were eligible. This allows non-UI project types that nonetheless
-contain a Vue or React sub-project to receive UX analysis.
+It first checks `package.json` for known terminal-UI dependencies such as Ink or
+blessed. If such a dependency is present, the project is routed to the TUI-specific
+analysis path. Otherwise, the step performs a filesystem probe: it scans the project
+directory for files matching recognised framework UI extensions (§3.3). If UI files are
+found, the step proceeds as if the project type were eligible. This allows non-UI
+project types that nonetheless contain a Vue, React, or Svelte sub-project to receive
+UX analysis.
 
 If the probe also finds no UI files, the step skips with reason
 `'project type not eligible'`.
@@ -111,6 +114,9 @@ accessibility and usability signal:
 
 - **HTML files** fill approximately 70% of the available slots (rounded down).
 - **CSS files** fill the remaining slots, receiving any unused HTML slots as a bonus.
+- **Framework component files** (`.jsx`, `.tsx`, `.vue`, `.svelte`) fill any slots left
+  after HTML/CSS selection so React-, Vue-, and Svelte-only projects still provide
+  grounding snippets.
 - A maximum of 10 files is selected in total.
 
 The selection is done from the full discovered UI file list, in discovery order, within
