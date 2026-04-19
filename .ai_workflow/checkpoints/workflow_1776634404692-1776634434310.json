@@ -1,0 +1,216 @@
+{
+  "version": "1.0.1",
+  "workflowId": "workflow_1776634404692",
+  "workflowVersion": "2.0.0",
+  "timestamp": 1776634434310,
+  "state": {
+    "currentStep": null,
+    "completedSteps": [],
+    "failedSteps": [],
+    "skippedSteps": [],
+    "results": {
+      "step_00": {
+        "stepId": "step_00",
+        "stepName": "Pre-Analysis",
+        "success": true,
+        "output": {
+          "success": true,
+          "analysis": {
+            "commitsAhead": 0,
+            "modifiedFiles": 7,
+            "modifiedFilesList": [
+              ".ai_workflow/logs/workflow_20260419_183324/steps/step_00.log",
+              ".ai_workflow/logs/workflow_20260419_183324/workflow.log",
+              ".ai_workflow/metrics/current_run.json",
+              ".ai_workflow/metrics/history.jsonl",
+              ".workflow-config.yaml",
+              "docs/ai_helpers_functional_requirements.md",
+              "docs/ai_helpers_roadmap.md"
+            ],
+            "changeScope": "mixed-changes",
+            "fileCounts": {
+              "documentation": 2,
+              "test": 0,
+              "source": 0,
+              "config": 1,
+              "workflow_artifact": 0
+            },
+            "categorizedFiles": {
+              "documentation": [
+                "docs/ai_helpers_functional_requirements.md",
+                "docs/ai_helpers_roadmap.md"
+              ],
+              "test": [],
+              "source": [],
+              "config": [
+                ".workflow-config.yaml"
+              ],
+              "workflow_artifact": []
+            },
+            "projectKind": {
+              "kind": "generic",
+              "confidence": 100,
+              "source": "config",
+              "description": "generic"
+            },
+            "techStack": {
+              "primary_language": "markdown",
+              "languages": [
+                "markdown",
+                "json",
+                "yaml"
+              ],
+              "frameworks": [],
+              "build_system": "none",
+              "build_files": [],
+              "test_framework": null,
+              "test_command": null,
+              "linters": [],
+              "detected_at": "2026-04-19T21:33:24.734Z",
+              "primaryLanguage": "markdown"
+            },
+            "smokeTest": null,
+            "timestamp": 1776634404735
+          },
+          "contextUpdate": {
+            "projectType": "generic",
+            "modifiedFiles": [
+              ".ai_workflow/logs/workflow_20260419_183324/steps/step_00.log",
+              ".ai_workflow/logs/workflow_20260419_183324/workflow.log",
+              ".ai_workflow/metrics/current_run.json",
+              ".ai_workflow/metrics/history.jsonl",
+              ".workflow-config.yaml",
+              "docs/ai_helpers_functional_requirements.md",
+              "docs/ai_helpers_roadmap.md"
+            ],
+            "categorizedFiles": {
+              "documentation": [
+                "docs/ai_helpers_functional_requirements.md",
+                "docs/ai_helpers_roadmap.md"
+              ],
+              "test": [],
+              "source": [],
+              "config": [
+                ".workflow-config.yaml"
+              ],
+              "workflow_artifact": []
+            },
+            "fileCounts": {
+              "documentation": 2,
+              "test": 0,
+              "source": 0,
+              "config": 1,
+              "workflow_artifact": 0
+            },
+            "changeScope": "mixed-changes",
+            "commitsAhead": 0
+          }
+        },
+        "duration": 44
+      },
+      "step_0b": {
+        "stepId": "step_0b",
+        "stepName": "Bootstrap Documentation",
+        "success": true,
+        "output": {
+          "success": true,
+          "skipped": true,
+          "reason": "sufficient_docs"
+        },
+        "duration": 21
+      },
+      "step_01": {
+        "stepId": "step_01",
+        "stepName": "Documentation Updates",
+        "success": true,
+        "output": {
+          "success": true,
+          "skipped": true,
+          "reason": "docs_unchanged"
+        },
+        "duration": 13
+      },
+      "step_04": {
+        "stepId": "step_04",
+        "stepName": "Configuration Validation",
+        "success": true,
+        "output": {
+          "success": true,
+          "filesChecked": 1,
+          "syntaxErrors": [],
+          "securityFindings": [],
+          "bestPracticeIssues": [],
+          "alternatives": [],
+          "recommendedAlternative": null
+        },
+        "duration": 26802
+      },
+      "step_01_5": {
+        "stepId": "step_01_5",
+        "stepName": "Copilot Instructions Validation",
+        "success": false,
+        "error": {
+          "message": "Failed to read file: ENOENT: no such file or directory, open '/home/mpb/Documents/GitHub/ai_workflow_fspec/package.json'",
+          "name": "FileSystemError",
+          "stack": "FileSystemError: Failed to read file: ENOENT: no such file or directory, open '/home/mpb/Documents/GitHub/ai_workflow_fspec/package.json'\n    at FileOperations.readFile (/home/mpb/Documents/GitHub/ai_workflow.js/node_modules/olinda_shell_interface.js/dist/src/core/file_operations.js:184:19)\n    at async Step1_5CopilotInstructionsValidator.collectRepoFacts (file:///home/mpb/Documents/GitHub/ai_workflow.js/src/steps/step_01_5_copilot_instructions.js:402:28)\n    at async Step1_5CopilotInstructionsValidator.execute (file:///home/mpb/Documents/GitHub/ai_workflow.js/src/steps/step_01_5_copilot_instructions.js:328:19)\n    at async Object.handler (file:///home/mpb/Documents/GitHub/ai_workflow.js/src/orchestrator/main_orchestrator.js:1229:15)\n    at async WorkflowEngine.executeStep (file:///home/mpb/Documents/GitHub/ai_workflow.js/src/orchestrator/workflow_engine.js:755:24)\n    at async WorkflowEngine.executeWorkflow (file:///home/mpb/Documents/GitHub/ai_workflow.js/src/orchestrator/workflow_engine.js:638:24)\n    at async MainOrchestrator.execute (file:///home/mpb/Documents/GitHub/ai_workflow.js/src/orchestrator/main_orchestrator.js:1001:28)\n    at async startTui (file:///home/mpb/Documents/GitHub/ai_workflow.js/src/cli/tui/index.js:103:28)\n    at async runCommand (file:///home/mpb/Documents/GitHub/ai_workflow.js/src/cli/commands/run.js:206:22)"
+        },
+        "duration": 2732
+      }
+    },
+    "context": {
+      "workflowDir": "/home/mpb/Documents/GitHub/ai_workflow_fspec/.ai_workflow",
+      "projectRoot": "/home/mpb/Documents/GitHub/ai_workflow_fspec",
+      "auto": false,
+      "workflowRunId": "workflow_20260419_183324",
+      "modifiedFiles": [
+        "INDEX.md",
+        "ROADMAP.md",
+        "docs/GENERATION_SUMMARY.md",
+        ".github/copilot-instructions.md",
+        "docs/step_02_5_documentation_optimization.md",
+        "docs/step_02_consistency_analysis.md",
+        "docs/step_03_script_references.md",
+        "docs/step_04_config_validation.md",
+        "docs/step_05_directory_analysis.md",
+        "docs/step_06_test_review.md",
+        "docs/step_07_test_generation.md",
+        "docs/step_08_test_execution.md",
+        "docs/step_09_dependency_validation.md",
+        "docs/step_0b_bootstrap_documentation.md",
+        "docs/step_0f_commit_artifacts.md",
+        "docs/step_10_code_quality.md",
+        "docs/step_11_5_aws_lbs_validation.md",
+        "docs/step_11_6_aws_serverless_review.md",
+        "docs/step_11_context_analysis.md",
+        "docs/step_12_git_finalization.md",
+        "docs/step_13_markdown_lint.md",
+        "docs/step_14_prompt_engineering.md",
+        "docs/step_15_ux_analysis.md",
+        "docs/step_16_version_update.md",
+        "docs/step_17_workflow_summary.md",
+        "docs/step_18_debugging.md",
+        "docs/step_19_typescript_review.md",
+        "docs/step_contract.md",
+        "docs/step_01_documentation_analysis.md",
+        "docs/step_00_pre_analysis.md",
+        "docs/ai_prompt_contract.md",
+        "LICENSE",
+        "README.md",
+        ".ai_workflow/logs/workflow_20260419_183324/workflow.log",
+        ".ai_workflow/metrics/current_run.json",
+        ".ai_workflow/metrics/history.jsonl",
+        ".workflow-config.yaml",
+        "docs/ai_helpers_functional_requirements.md",
+        "docs/ai_helpers_roadmap.md"
+      ],
+      "projectType": "generic",
+      "scope": "infrastructure",
+      "projectDescription": "ai_workflow_fspec",
+      "alternatives": false
+    }
+  },
+  "metadata": {
+    "totalSteps": 30,
+    "progress": 0
+  }
+}

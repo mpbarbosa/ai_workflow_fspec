@@ -1,0 +1,9 @@
+[2026-04-19T21:41:11.216Z] 
+→ Starting: Doc Consolidation
+[2026-04-19T21:41:11.226Z] Step 21: Doc Consolidation — scanning for similar documents…
+[2026-04-19T21:41:11.232Z] Step 21: cache miss — computing TF-IDF for 34 docs
+[2026-04-19T21:41:11.250Z] Step 21: no similar clusters found
+[2026-04-19T21:41:11.250Z] ✓ Step step_21 completed in 34ms
+[2026-04-19T21:41:11.250Z] [DEBUG] [Performance] step_21: 34ms
+[2026-04-19T21:41:11.250Z] [DEBUG] Recorded outcome for step_21: success
+[2026-04-19T21:41:11.250Z] ✓ Completed: Doc Consolidation (0s)

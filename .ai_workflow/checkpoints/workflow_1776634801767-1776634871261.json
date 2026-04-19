@@ -1,0 +1,852 @@
+{
+  "version": "1.0.1",
+  "workflowId": "workflow_1776634801767",
+  "workflowVersion": "2.0.0",
+  "timestamp": 1776634871261,
+  "state": {
+    "currentStep": null,
+    "completedSteps": [],
+    "failedSteps": [],
+    "skippedSteps": [],
+    "results": {
+      "step_00": {
+        "stepId": "step_00",
+        "stepName": "Pre-Analysis",
+        "success": true,
+        "output": {
+          "success": true,
+          "analysis": {
+            "commitsAhead": 0,
+            "modifiedFiles": 22,
+            "modifiedFilesList": [
+              ".ai_workflow/backlog/workflow_20260419_183324/step_00.md",
+              ".ai_workflow/backlog/workflow_20260419_183324/step_04.md",
+              ".ai_workflow/backlog/workflow_20260419_183324/step_0b.md",
+              ".ai_workflow/checkpoints/workflow_1776634404692-1776634434310.json",
+              ".ai_workflow/commit_history.json",
+              ".ai_workflow/logs/workflow_20260419_183324/prompts/step_04/2026-04-19T21-33-38-912Z_0001_devops_engineer.md",
+              ".ai_workflow/logs/workflow_20260419_183324/prompts/step_04/2026-04-19T21-33-45-989Z_0002_devops_engineer.md",
+              ".ai_workflow/logs/workflow_20260419_183324/prompts/step_04/2026-04-19T21-33-51-549Z_0003_code_quality_analyst.md",
+              ".ai_workflow/logs/workflow_20260419_183324/steps/step_00.log",
+              ".ai_workflow/logs/workflow_20260419_183324/steps/step_01.log",
+              ".ai_workflow/logs/workflow_20260419_183324/steps/step_01_5.log",
+              ".ai_workflow/logs/workflow_20260419_183324/steps/step_04.log",
+              ".ai_workflow/logs/workflow_20260419_183324/steps/step_0b.log",
+              ".ai_workflow/logs/workflow_20260419_183324/workflow.log",
+              ".ai_workflow/logs/workflow_20260419_184001/steps/step_00.log",
+              ".ai_workflow/logs/workflow_20260419_184001/workflow.log",
+              ".ai_workflow/metrics/current_run.json",
+              ".ai_workflow/metrics/history.jsonl",
+              ".ai_workflow/summaries/workflow_20260419_183324/workflow_summary.md",
+              ".workflow-config.yaml",
+              "docs/ai_helpers_functional_requirements.md",
+              "docs/ai_helpers_roadmap.md"
+            ],
+            "changeScope": "mixed-changes",
+            "fileCounts": {
+              "documentation": 2,
+              "test": 0,
+              "source": 0,
+              "config": 1,
+              "workflow_artifact": 0
+            },
+            "categorizedFiles": {
+              "documentation": [
+                "docs/ai_helpers_functional_requirements.md",
+                "docs/ai_helpers_roadmap.md"
+              ],
+              "test": [],
+              "source": [],
+              "config": [
+                ".workflow-config.yaml"
+              ],
+              "workflow_artifact": []
+            },
+            "projectKind": {
+              "kind": "generic",
+              "confidence": 100,
+              "source": "config",
+              "description": "generic"
+            },
+            "techStack": {
+              "primary_language": "markdown",
+              "languages": [
+                "markdown",
+                "json",
+                "yaml"
+              ],
+              "frameworks": [],
+              "build_system": "none",
+              "build_files": [],
+              "test_framework": null,
+              "test_command": null,
+              "linters": [],
+              "detected_at": "2026-04-19T21:40:01.809Z",
+              "primaryLanguage": "markdown"
+            },
+            "smokeTest": null,
+            "timestamp": 1776634801810
+          },
+          "contextUpdate": {
+            "projectType": "generic",
+            "modifiedFiles": [
+              ".ai_workflow/backlog/workflow_20260419_183324/step_00.md",
+              ".ai_workflow/backlog/workflow_20260419_183324/step_04.md",
+              ".ai_workflow/backlog/workflow_20260419_183324/step_0b.md",
+              ".ai_workflow/checkpoints/workflow_1776634404692-1776634434310.json",
+              ".ai_workflow/commit_history.json",
+              ".ai_workflow/logs/workflow_20260419_183324/prompts/step_04/2026-04-19T21-33-38-912Z_0001_devops_engineer.md",
+              ".ai_workflow/logs/workflow_20260419_183324/prompts/step_04/2026-04-19T21-33-45-989Z_0002_devops_engineer.md",
+              ".ai_workflow/logs/workflow_20260419_183324/prompts/step_04/2026-04-19T21-33-51-549Z_0003_code_quality_analyst.md",
+              ".ai_workflow/logs/workflow_20260419_183324/steps/step_00.log",
+              ".ai_workflow/logs/workflow_20260419_183324/steps/step_01.log",
+              ".ai_workflow/logs/workflow_20260419_183324/steps/step_01_5.log",
+              ".ai_workflow/logs/workflow_20260419_183324/steps/step_04.log",
+              ".ai_workflow/logs/workflow_20260419_183324/steps/step_0b.log",
+              ".ai_workflow/logs/workflow_20260419_183324/workflow.log",
+              ".ai_workflow/logs/workflow_20260419_184001/steps/step_00.log",
+              ".ai_workflow/logs/workflow_20260419_184001/workflow.log",
+              ".ai_workflow/metrics/current_run.json",
+              ".ai_workflow/metrics/history.jsonl",
+              ".ai_workflow/summaries/workflow_20260419_183324/workflow_summary.md",
+              ".workflow-config.yaml",
+              "docs/ai_helpers_functional_requirements.md",
+              "docs/ai_helpers_roadmap.md"
+            ],
+            "categorizedFiles": {
+              "documentation": [
+                "docs/ai_helpers_functional_requirements.md",
+                "docs/ai_helpers_roadmap.md"
+              ],
+              "test": [],
+              "source": [],
+              "config": [
+                ".workflow-config.yaml"
+              ],
+              "workflow_artifact": []
+            },
+            "fileCounts": {
+              "documentation": 2,
+              "test": 0,
+              "source": 0,
+              "config": 1,
+              "workflow_artifact": 0
+            },
+            "changeScope": "mixed-changes",
+            "commitsAhead": 0
+          }
+        },
+        "duration": 42
+      },
+      "step_0b": {
+        "stepId": "step_0b",
+        "stepName": "Bootstrap Documentation",
+        "success": true,
+        "output": {
+          "success": true,
+          "skipped": true,
+          "reason": "sufficient_docs"
+        },
+        "duration": 16
+      },
+      "step_01": {
+        "stepId": "step_01",
+        "stepName": "Documentation Updates",
+        "success": true,
+        "output": {
+          "success": true,
+          "skipped": true,
+          "reason": "docs_unchanged"
+        },
+        "duration": 11
+      },
+      "step_04": {
+        "stepId": "step_04",
+        "stepName": "Configuration Validation",
+        "success": true,
+        "output": {
+          "success": true,
+          "filesChecked": 1,
+          "syntaxErrors": [],
+          "securityFindings": [],
+          "bestPracticeIssues": [],
+          "alternatives": [],
+          "recommendedAlternative": null
+        },
+        "duration": 7272
+      },
+      "step_01_5": {
+        "stepId": "step_01_5",
+        "stepName": "Copilot Instructions Validation",
+        "success": true,
+        "output": {
+          "success": true,
+          "updated": true,
+          "file": ".github/copilot-instructions.md",
+          "facts": {
+            "packageManifestPresent": false,
+            "packageName": "",
+            "packageVersion": "",
+            "packageDescription": "",
+            "packageExports": [],
+            "validationCommands": {},
+            "referenceDocs": [
+              "README.md"
+            ],
+            "sourceLayers": [],
+            "supportingSurfaces": [
+              {
+                "path": ".workflow-config.yaml",
+                "purpose": "Project-local workflow configuration"
+              },
+              {
+                "path": ".ai_workflow/",
+                "purpose": "Runtime artifacts, cache, and checkpoints"
+              }
+            ]
+          },
+          "findings": "## Findings\n\n### Finding 1 - Overly Broad Project Description\n- **Classification**: unsupported claim\n- **Current file evidence**: \"This repository is a **language-independent functional specification** for an AI workflow programming model. Content is documentation-first: the primary artifacts are specification documents in `docs/`, not executable code.\"\n- **Repo-fact evidence**: No explicit repo fact confirming this description; no package.json or codebase structure is visible.\n- **Action**: rewrite\n- **Why this matters**: Copilot guidance should avoid unverifiable or potentially outdated project descriptions and focus on durable, actionable instructions.\n\n### Finding 2 - Detailed Repository Structure Section\n- **Classification**: duplicate reference\n- **Current file evidence**: \"## Repository Structure\" and the list of files/folders\n- **Repo-fact evidence**: Only `README.md`, `.workflow-config.yaml`, and `.ai_workflow/` are confirmed as supporting workflow surfaces; no exhaustive structure is provided.\n- **Action**: remove\n- **Why this matters**: Copilot guidance should not duplicate or attempt to maintain a file/folder inventory; this is volatile and best referenced via `README.md`.\n\n### Finding 3 - Conventions Section (Spec Content, Language-Agnosticism, Prose Focus)\n- **Classification**: supported guidance\n- **Current file evidence**: \"All specification content lives in `docs/`. Keep documents in Markdown. The spec is language-agnostic; avoid coupling examples or descriptions to any specific programming language or runtime. Prefer clear, precise prose over implementation details. Specs should describe *what*, not *how*.\"\n- **Repo-fact evidence**: No direct evidence, but aligns with the presence of `README.md` and the lack of code/package metadata.\n- **Action**: keep (condense)\n- **Why this matters**: These are durable, high-signal principles for Copilot-assisted documentation work in a spec-driven repo.\n\n### Finding 4 - Absence of Validation Commands and Architecture Boundaries\n- **Classification**: supported guidance\n- **Current file evidence**: none\n- **Repo-fact evidence**: \"No standard validation commands detected.\" \"Stable Source Layers: Unavailable.\"\n- **Action**: omit pending evidence\n- **Why this matters**: Avoids introducing unsupported or misleading process guidance.\n\n### Finding 5 - Reference to Authoritative Docs\n- **Classification**: supported guidance\n- **Current file evidence**: \"README.md — Project overview\"\n- **Repo-fact evidence**: \"README.md\" is confirmed as the authoritative reference doc.\n- **Action**: keep (as a pointer)\n- **Why this matters**: Directs Copilot and contributors to the single source of truth for project details.\n\n### Finding 6 - Omission of Implementation, Status, or Inventory Snapshots\n- **Classification**: supported guidance\n- **Current file evidence**: none\n- **Repo-fact evidence**: Explicitly required to avoid such content.\n- **Action**: keep (as omission)\n- **Why this matters**: Ensures the file remains durable and low-maintenance.\n"
+        },
+        "duration": 16142
+      },
+      "step_05": {
+        "stepId": "step_05",
+        "stepName": "Directory Structure",
+        "success": true,
+        "output": {
+          "success": true,
+          "totalDirs": 2,
+          "misplacedDocs": 1,
+          "organizedDocs": 0,
+          "issues": [
+            {
+              "type": "undocumented",
+              "directory": ".github",
+              "message": "Undocumented directory: .github"
+            },
+            {
+              "type": "undocumented",
+              "directory": "docs",
+              "message": "Undocumented directory: docs"
+            }
+          ],
+          "missingCritical": 0,
+          "undocumented": 2,
+          "docMismatch": 0,
+          "existingDirs": [
+            ".github",
+            "docs"
+          ],
+          "documentationFiles": [
+            {
+              "path": "README.md",
+              "content": "# ai_workflow_fspec\nAI Workflow Programming Language Independent Functional Specification\n"
+            },
+            {
+              "path": ".github/copilot-instructions.md",
+              "content": "# Copilot Instructions\n\nThis file provides durable, high-signal guidance for Copilot-assisted documentation and editing in this repository.\n\n- Focus on clear, precise, and language-agnostic specification writing.\n- Keep all specification content in Markdown format.\n- Avoid coupling examples or descriptions to any specific programming language or runtime.\n- Prefer describing *what* the system should do, not *how* to implement it.\n- Do not include implementation status, file inventories, or command lists here; refer to the authoritative `README.md` for project details.\n- For any project-specific questions or reference needs, consult `README.md`.\n"
+            }
+          ]
+        },
+        "duration": 20158
+      },
+      "step_02": {
+        "stepId": "step_02",
+        "stepName": "Consistency Analysis",
+        "success": true,
+        "output": {
+          "success": true,
+          "filesChecked": 34,
+          "totalIssues": 76,
+          "brokenLinks": [
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_02_consistency_analysis.md",
+              "link": "url",
+              "text": "text",
+              "line": 88,
+              "type": "broken_link"
+            }
+          ],
+          "versionIssues": [
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "6.6.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v6.6.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v3.2.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v4.1.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v6.1.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v4.2.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v6.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v6.3.1",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v3.3.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v4.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v6.3.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v6.4.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v6.5.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v3.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v6.2.2",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_functional_requirements.md",
+              "found": "v1.0.2",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v6.6.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v6.7.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v4.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v6.7.1",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v6.7.2",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v6.7.3",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v6.7.4",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v6.7.5",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v6.7.6",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v7.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v7.1.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v7.2.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v7.3.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v7.4.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v7.5.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v8.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v8.1.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v8.2.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v8.3.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v8.4.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v8.5.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/ai_helpers_roadmap.md",
+              "found": "v3.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_00_pre_analysis.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_00_pre_analysis.md",
+              "found": "5.2.4",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_00_pre_analysis.md",
+              "found": "5.2.1",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_00_pre_analysis.md",
+              "found": "5.2.2",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_00_pre_analysis.md",
+              "found": "5.2.3",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_00_pre_analysis.md",
+              "found": "5.2.5",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_00_pre_analysis.md",
+              "found": "5.2.6",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_00_pre_analysis.md",
+              "found": "5.2.7",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_00_pre_analysis.md",
+              "found": "5.2.8",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_00_pre_analysis.md",
+              "found": "5.2.9",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_00_pre_analysis.md",
+              "found": "5.2.10",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_00_pre_analysis.md",
+              "found": "5.2.11",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_01_documentation_analysis.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_02_5_documentation_optimization.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_02_consistency_analysis.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_03_script_references.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_04_config_validation.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_05_directory_analysis.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_06_test_review.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_07_test_generation.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_08_test_execution.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_09_dependency_validation.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_0b_bootstrap_documentation.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_0f_commit_artifacts.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_10_code_quality.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_11_5_aws_lbs_validation.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_11_6_aws_serverless_review.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_11_context_analysis.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_12_git_finalization.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_13_markdown_lint.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_14_prompt_engineering.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_15_ux_analysis.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_16_version_update.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_16_version_update.md",
+              "found": "1.0.1-alpha",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_17_workflow_summary.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_18_debugging.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            },
+            {
+              "file": "/home/mpb/Documents/GitHub/ai_workflow_fspec/docs/step_19_typescript_review.md",
+              "found": "2.0.0",
+              "expected": "1.0.1",
+              "type": "invalid_version"
+            }
+          ]
+        },
+        "duration": 25224
+      },
+      "step_06": {
+        "stepId": "step_06",
+        "stepName": "Test Review",
+        "success": true,
+        "output": {
+          "success": true,
+          "testFiles": [],
+          "issues": [
+            {
+              "type": "no_tests",
+              "message": "No test files found"
+            }
+          ]
+        },
+        "duration": 40
+      },
+      "step_02_5": {
+        "stepId": "step_02_5",
+        "stepName": "Documentation Optimization",
+        "success": true,
+        "output": {
+          "success": true,
+          "summary": {
+            "totalFiles": 30,
+            "exactDuplicates": [],
+            "redundantPairs": [],
+            "outdatedFiles": [],
+            "edgeCases": [],
+            "filesOptimized": 0,
+            "errors": []
+          },
+          "optimizationResults": null,
+          "reportResult": null,
+          "executionTime": 0,
+          "errors": []
+        },
+        "duration": 415
+      },
+      "step_03": {
+        "stepId": "step_03",
+        "stepName": "Script References",
+        "success": true,
+        "output": {
+          "success": true,
+          "skipped": true,
+          "reason": "no_scripts",
+          "alternatives": [],
+          "recommendedAlternative": null
+        },
+        "duration": 58
+      },
+      "step_07": {
+        "stepId": "step_07",
+        "stepName": "Test Generation",
+        "success": true,
+        "output": {
+          "success": true,
+          "totalSourceFiles": 0,
+          "totalTestFiles": 0,
+          "untestedFiles": [],
+          "coveragePercentage": 0,
+          "generatedFiles": []
+        },
+        "duration": 65
+      },
+      "step_21": {
+        "stepId": "step_21",
+        "stepName": "Doc Consolidation",
+        "success": true,
+        "output": {
+          "success": true,
+          "clustersFound": 0,
+          "totalDocs": 34
+        },
+        "duration": 34
+      },
+      "step_08": {
+        "stepId": "step_08",
+        "stepName": "Test Execution",
+        "success": false,
+        "output": {
+          "success": false,
+          "language": "markdown",
+          "testResults": {},
+          "message": "No test command configured"
+        },
+        "duration": 11
+      }
+    },
+    "context": {
+      "workflowDir": "/home/mpb/Documents/GitHub/ai_workflow_fspec/.ai_workflow",
+      "projectRoot": "/home/mpb/Documents/GitHub/ai_workflow_fspec",
+      "auto": false,
+      "workflowRunId": "workflow_20260419_184001",
+      "modifiedFiles": [
+        ".ai_workflow/backlog/workflow_20260419_183324/step_00.md",
+        ".ai_workflow/backlog/workflow_20260419_183324/step_04.md",
+        ".ai_workflow/backlog/workflow_20260419_183324/step_0b.md",
+        ".ai_workflow/checkpoints/workflow_1776634404692-1776634434310.json",
+        ".ai_workflow/commit_history.json",
+        ".ai_workflow/logs/workflow_20260419_183324/prompts/step_04/2026-04-19T21-33-38-912Z_0001_devops_engineer.md",
+        ".ai_workflow/logs/workflow_20260419_183324/prompts/step_04/2026-04-19T21-33-45-989Z_0002_devops_engineer.md",
+        ".ai_workflow/logs/workflow_20260419_183324/prompts/step_04/2026-04-19T21-33-51-549Z_0003_code_quality_analyst.md",
+        ".ai_workflow/logs/workflow_20260419_183324/steps/step_00.log",
+        ".ai_workflow/logs/workflow_20260419_183324/steps/step_01.log",
+        ".ai_workflow/logs/workflow_20260419_183324/steps/step_01_5.log",
+        ".ai_workflow/logs/workflow_20260419_183324/steps/step_04.log",
+        ".ai_workflow/logs/workflow_20260419_183324/steps/step_0b.log",
+        ".ai_workflow/logs/workflow_20260419_183324/workflow.log",
+        ".ai_workflow/logs/workflow_20260419_184001/workflow.log",
+        ".ai_workflow/metrics/current_run.json",
+        ".ai_workflow/metrics/history.jsonl",
+        ".ai_workflow/summaries/workflow_20260419_183324/workflow_summary.md",
+        ".workflow-config.yaml",
+        "docs/ai_helpers_functional_requirements.md",
+        "docs/ai_helpers_roadmap.md"
+      ],
+      "projectType": "generic",
+      "scope": "infrastructure",
+      "projectDescription": "ai_workflow_fspec",
+      "alternatives": false
+    }
+  },
+  "metadata": {
+    "totalSteps": 30,
+    "progress": 0
+  }
+}

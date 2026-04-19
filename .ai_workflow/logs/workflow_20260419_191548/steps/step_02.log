@@ -1,0 +1,28 @@
+[2026-04-19T22:16:46.565Z] 
+→ Starting: Consistency Check
+[2026-04-19T22:16:46.574Z] ════════════════════════════════════════════════════════════
+[2026-04-19T22:16:46.574Z] 🔷  Step 2: Documentation Consistency Analysis
+[2026-04-19T22:16:46.574Z] ════════════════════════════════════════════════════════════
+[2026-04-19T22:16:46.609Z] Found 34 documentation files
+[2026-04-19T22:16:46.610Z] Expected version: 1.0.0
+[2026-04-19T22:16:46.612Z] Version check: 75 issue(s) found
+[2026-04-19T22:16:46.640Z] Link check: 1 broken link(s) found
+[2026-04-19T22:16:48.893Z] ✓ GitHub Copilot SDK initialized successfully
+[2026-04-19T22:16:48.893Z] Available Copilot models (13): claude-sonnet-4.6, claude-sonnet-4.5, claude-haiku-4.5, claude-opus-4.6, claude-opus-4.5, claude-sonnet-4, gpt-5.4, gpt-5.3-codex, gpt-5.2-codex, gpt-5.2, gpt-5.4-mini, gpt-5-mini, gpt-4.1
+[2026-04-19T22:16:48.894Z] [DEBUG] AI cache initialized: .ai_workflow/.ai_cache
+[2026-04-19T22:16:48.903Z] [step_02] Running AI analysis in 1 partition(s) of ≤50 files
+[2026-04-19T22:16:48.923Z] [DEBUG] [ai_cache] step_02_part0of1: file hash changed, calling AI
+[2026-04-19T22:16:48.923Z] [DEBUG] Request Options: {"model":"gpt-4.1","temperature":0.7,"maxTokens":4000,"stream":false,"persona":"documentation_expert","cache":true}
+[2026-04-19T22:16:48.923Z] [DEBUG] Persona: documentation_expert
+[2026-04-19T22:16:48.923Z] [DEBUG] Model: gpt-4.1
+[2026-04-19T22:16:48.923Z] [AI] SDK call starting — persona: documentation_expert, model: gpt-4.1, prompt_chars: 32629
+[2026-04-19T22:16:48.923Z] [DEBUG] Executing AI request (attempt 1/3)
+[2026-04-19T22:16:59.890Z] [AI] SDK call completed — persona: documentation_expert, model: gpt-4.1, response_chars: 3809, latency: 10967ms
+[2026-04-19T22:16:59.891Z] ✓ AI request completed successfully
+[2026-04-19T22:16:59.901Z] [DEBUG] Prompt logged to: 2026-04-19T22-16-59-899Z_0001_documentation_expert.md
+[2026-04-19T22:16:59.966Z] ⚠ Step 2 completed - 76 issue(s) found
+[2026-04-19T22:16:59.966Z] ✓ Step step_02 completed in 13401ms
+[2026-04-19T22:16:59.966Z] [DEBUG] [Performance] step_02: 13.4s
+[2026-04-19T22:16:59.966Z] ⚠ [WARNING] Operation 'step_02' took 13.4s (memory: 73.7MB)
+[2026-04-19T22:16:59.966Z] [DEBUG] Recorded outcome for step_02: success
+[2026-04-19T22:16:59.966Z] ✓ Completed: Consistency Check (13s)
