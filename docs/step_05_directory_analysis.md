@@ -113,9 +113,16 @@ in priority order:
 ### 3.6 Documentation Reference Check
 
 A directory is considered documented when its base name appears as a substring in at
-least one of the project's documentation files. The documentation files checked are
-`README.md` and `.github/copilot-instructions.md`. Only files that can be read are
-checked; unreadable files are silently skipped.
+least one item from the scanned documentation evidence set. The evidence set includes
+root-level repository maps and structure docs (`README.md`, `INDEX.md`,
+`docs/ARCHITECTURE.md`, `CONTRIBUTING.md`, `.github/copilot-instructions.md`) plus
+directory-local `README.md` files for existing directories. Only files that can be read
+are checked; unreadable files are silently skipped.
+
+Repository inventory documents such as `INDEX.md` and directory-local `README.md` files
+count as valid structural evidence even when the documentation excerpts shown to the AI
+are partial. Automated "undocumented" findings are therefore provisional until re-checked
+against the visible excerpts injected into the prompt.
 
 ---
 
