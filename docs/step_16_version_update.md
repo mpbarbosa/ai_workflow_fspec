@@ -56,7 +56,7 @@ All exceptions within `execute` are caught and returned as
 ### 3.1 Semantic Version Format
 
 Versions follow the format `X.Y.Z` where each component is a non-negative integer.
-An optional pre-release suffix is supported: `X.Y.Z-prerelease` (e.g. `1.0.0-alpha`).
+An optional pre-release suffix is supported: `X.Y.Z-prerelease` (e.g. `1.0.1-alpha`).
 The pre-release suffix is preserved through version bumps.
 
 ### 3.2 Bump Types
@@ -65,7 +65,7 @@ Three bump types are defined, consistent with the Semantic Versioning specificat
 
 | Type | Effect | Typical Trigger |
 |---|---|---|
-| `major` | `X+1.0.0` | Breaking changes; large deletions or high file-modified count |
+| `major` | `X+1.0.1` | Breaking changes; large deletions or high file-modified count |
 | `minor` | `X.Y+1.0` | New features; new files added or significant insertions |
 | `patch` | `X.Y.Z+1` | Bug fixes, documentation, refactoring, tests |
 
