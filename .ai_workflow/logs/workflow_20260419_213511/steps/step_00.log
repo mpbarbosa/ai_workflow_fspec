@@ -1,0 +1,26 @@
+[2026-04-20T00:35:11.543Z] 
+→ Starting: Pre-Analysis
+[2026-04-20T00:35:11.559Z] ════════════════════════════════════════════════════════════
+[2026-04-20T00:35:11.559Z] 🔷  Step 0: Pre-Analysis - Analyzing Recent Changes
+[2026-04-20T00:35:11.559Z] ════════════════════════════════════════════════════════════
+[2026-04-20T00:35:11.574Z] Commits ahead of remote: 0
+[2026-04-20T00:35:11.574Z] Modified files: 63
+[2026-04-20T00:35:11.578Z] ✓ Project kind from config: generic (configured)
+[2026-04-20T00:35:11.578Z] Detected language: markdown
+[2026-04-20T00:35:11.578Z] Build system: none
+[2026-04-20T00:35:11.578Z] Test framework: none
+[2026-04-20T00:35:11.578Z] ✓ Pre-analysis complete:
+  • Commits ahead: 0
+  • Modified files: 63
+  • Change scope: mixed-changes
+  • Documentation: 4 files
+  • Tests: 0 files
+  • Source: 0 files
+  • Config: 1 files
+  • Project kind: generic (100% confidence)
+  • Language: markdown
+
+[2026-04-20T00:35:11.583Z] ✓ Step step_00 completed in 40ms
+[2026-04-20T00:35:11.584Z] [DEBUG] [Performance] step_00: 41ms
+[2026-04-20T00:35:11.584Z] [DEBUG] Recorded outcome for step_00: success
+[2026-04-20T00:35:11.584Z] ✓ Completed: Pre-Analysis (0s)

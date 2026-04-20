@@ -1,0 +1,17 @@
+project:
+  name: ai_workflow_fspec
+  kind: generic
+  primary_language: markdown
+  description: ai_workflow_fspec project
+tech_stack:
+  primary_language: markdown
+  build_system: none
+  test_framework: null
+  test_command: ''
+structure:
+  source_dirs:
+    - src
+  test_dirs:
+    - test
+  docs_dirs:
+    - docs

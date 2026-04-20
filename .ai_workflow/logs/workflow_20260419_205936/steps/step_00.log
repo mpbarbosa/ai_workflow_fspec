@@ -1,0 +1,27 @@
+[2026-04-19T23:59:37.108Z] 
+→ Starting: Pre-Analysis
+[2026-04-19T23:59:37.125Z] ════════════════════════════════════════════════════════════
+[2026-04-19T23:59:37.125Z] 🔷  Step 0: Pre-Analysis - Analyzing Recent Changes
+[2026-04-19T23:59:37.125Z] ════════════════════════════════════════════════════════════
+[2026-04-19T23:59:37.141Z] Commits ahead of remote: 0
+[2026-04-19T23:59:37.141Z] Modified files: 44
+[2026-04-19T23:59:37.142Z] No project kind in config, auto-detecting...
+[2026-04-19T23:59:37.144Z] Project kind: Could not determine with confidence
+[2026-04-19T23:59:37.147Z] Detected language: markdown
+[2026-04-19T23:59:37.147Z] Build system: none
+[2026-04-19T23:59:37.147Z] Test framework: none
+[2026-04-19T23:59:37.147Z] ✓ Pre-analysis complete:
+  • Commits ahead: 0
+  • Modified files: 44
+  • Change scope: documentation-only
+  • Documentation: 4 files
+  • Tests: 0 files
+  • Source: 0 files
+  • Config: 0 files
+  • Project kind: generic (30% confidence)
+  • Language: markdown
+
+[2026-04-19T23:59:37.152Z] ✓ Step step_00 completed in 44ms
+[2026-04-19T23:59:37.153Z] [DEBUG] [Performance] step_00: 44ms
+[2026-04-19T23:59:37.153Z] [DEBUG] Recorded outcome for step_00: success
+[2026-04-19T23:59:37.153Z] ✓ Completed: Pre-Analysis (0s)
