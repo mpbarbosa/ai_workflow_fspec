@@ -1,0 +1,11 @@
+[2026-04-20T01:19:24.307Z] 
+→ Starting: Test Execution
+[2026-04-20T01:19:24.315Z] ════════════════════════════════════════════════════════════
+[2026-04-20T01:19:24.315Z] 🔷  Step 8: Test Execution
+[2026-04-20T01:19:24.315Z] ════════════════════════════════════════════════════════════
+[2026-04-20T01:19:24.317Z] Detected language: markdown
+[2026-04-20T01:19:24.317Z] Skipping test execution: No test command is configured in .workflow-config.yaml
+[2026-04-20T01:19:24.317Z] Step step_08 skipped in 10ms
+[2026-04-20T01:19:24.317Z] [DEBUG] [Performance] step_08: 10ms
+[2026-04-20T01:19:24.317Z] [DEBUG] Recorded outcome for step_08: success
+[2026-04-20T01:19:24.317Z] ✓ Completed: Test Execution (0s)
