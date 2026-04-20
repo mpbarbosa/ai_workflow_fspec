@@ -499,3 +499,26 @@ Starting workflow execution...
 [2026-04-20T01:19:31.499Z] Changes: 4 files
 [2026-04-20T01:19:31.499Z] Inferred commit type: docs(documentation)
 [2026-04-20T01:19:31.500Z] Staging all changes...
+[2026-04-20T01:19:40.821Z] ✗ Push failed: ExecutionError: git pull --rebase origin : You are not currently on a branch.
+Please specify which branch you want to rebase against.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+[2026-04-20T01:19:40.823Z] ✓ Step step_12 completed in 9355ms
+[2026-04-20T01:19:40.823Z] [DEBUG] [Performance] step_12: 9.4s
+[2026-04-20T01:19:40.823Z] ⚠ [WARNING] Operation 'step_12' took 9.4s (memory: 122.77MB)
+[2026-04-20T01:19:40.823Z] [DEBUG] Recorded outcome for step_12: success
+[2026-04-20T01:19:40.823Z] ✓ Completed: Git Finalization (9s)
+[2026-04-20T01:19:40.823Z] ✓ Workflow completed in 46674ms
+[2026-04-20T01:19:40.823Z] Results: 14/25 steps succeeded
+[2026-04-20T01:19:40.840Z] Checkpoint saved: workflow_1776647934144-1776647980823
+[2026-04-20T01:19:40.848Z] [DEBUG] [Performance] workflow_total: 46.7s
+[2026-04-20T01:19:40.848Z] [DEBUG] [Performance] Total workflow: 46.7s
+[2026-04-20T01:19:40.848Z] 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[2026-04-20T01:19:40.848Z] ✓ Workflow completed successfully
+[2026-04-20T01:19:40.848Z] Duration: 47s
+[2026-04-20T01:19:40.848Z] Steps: 14/25 succeeded
+[2026-04-20T01:19:40.848Z] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[2026-04-20T01:19:40.848Z] [DEBUG] [CommitHistory] Saved hash=0a5e826e1e3d7b477a99a247b8dc6537705d7416 runId=workflow_1776647934144
