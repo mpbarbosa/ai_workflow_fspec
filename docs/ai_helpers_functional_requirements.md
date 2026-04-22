@@ -1,8 +1,8 @@
 # Functional Requirements: `config/ai_helpers.yaml`
 
-**Source File**: `config/ai_helpers.yaml`  
-**Version**: 6.6.0  
-**Document Date**: 2026-03-05  
+**Source File**: `config/ai_helpers.yaml`
+**Version**: 6.6.0
+**Document Date**: 2026-03-05
 **Repository**: `mpbarbosa/ai_workflow_core`
 
 ---
@@ -177,8 +177,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-01: `doc_analysis_prompt` — Documentation Analyst
 
-**Role**: Senior technical documentation specialist  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Senior technical documentation specialist
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Analyze changed source files and update only the documentation sections affected by those changes. Intended for incremental, change-driven documentation maintenance.
@@ -205,8 +205,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-02: `consistency_prompt` — Documentation Consistency Analyst
 
-**Role**: Senior technical documentation specialist and information architect  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Senior technical documentation specialist and information architect
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: `behavioral_structured`
 
 **Primary Use Case**: Comprehensive cross-file documentation consistency audit. Validates cross-references, terminology, version numbers, format patterns, and code example accuracy.
@@ -234,8 +234,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-03: `technical_writer_prompt` — Technical Writer
 
-**Role**: Senior technical writer and documentation architect  
-**Version introduced**: v4.1.0  
+**Role**: Senior technical writer and documentation architect
+**Version introduced**: v4.1.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Bootstrap documentation for undocumented or new projects from scratch. Covers API docs, architecture guides, user guides, developer guides, and code documentation.
@@ -266,8 +266,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-04: `requirements_engineer_prompt` — Requirements Engineer
 
-**Role**: Senior requirements engineer  
-**Version introduced**: v6.1.0  
+**Role**: Senior requirements engineer
+**Version introduced**: v6.1.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Requirements elicitation, analysis, specification, traceability, and validation. Defines WHAT the system SHOULD do.
@@ -302,8 +302,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-05: `front_end_developer_prompt` — Front-End Developer
 
-**Role**: Senior front-end developer  
-**Version introduced**: v4.2.0 (refined in v6.0.0)  
+**Role**: Senior front-end developer
+**Version introduced**: v4.2.0 (refined in v6.0.0)
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Implement, review, or optimize front-end code with focus on technical quality, performance, and maintainability. Does NOT cover UI/UX design decisions (see `ui_ux_designer_prompt`).
@@ -336,8 +336,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-06: `ui_ux_designer_prompt` — UI/UX Designer
 
-**Role**: Senior UI/UX designer and user experience specialist  
-**Version introduced**: v6.0.0  
+**Role**: Senior UI/UX designer and user experience specialist
+**Version introduced**: v6.0.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Review or design user interfaces and user experiences with focus on usability, visual design, and interaction patterns. Does NOT implement code (see `front_end_developer_prompt`).
@@ -357,8 +357,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-07: `e2e_test_engineer_prompt` — E2E Test Engineer
 
-**Role**: Senior end-to-end test engineer and browser automation specialist  
-**Version introduced**: v6.3.1  
+**Role**: Senior end-to-end test engineer and browser automation specialist
+**Version introduced**: v6.3.1
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Design, implement, or review E2E test strategies for web applications. Covers browser automation, visual testing, user journey validation, and CI/CD integration.
@@ -383,8 +383,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-08: `test_strategy_prompt` — Test Strategy Architect
 
-**Role**: Test strategy architect specializing in coverage analysis  
-**Version introduced**: Pre-v3.2.0 (refined in v3.3.0)  
+**Role**: Test strategy architect specializing in coverage analysis
+**Version introduced**: Pre-v3.2.0 (refined in v3.3.0)
 **Behavioral guideline**: `behavioral_structured`
 
 **Primary Use Case**: Portfolio-level test strategy analysis, coverage gap analysis, and test prioritization. Defines WHAT to test and WHERE gaps exist. Does NOT write test code (see `step5_test_review_prompt`).
@@ -411,8 +411,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-09: `single_file_test_prompt` — Per-File Test Generator
 
-**Role**: Senior test engineer for complete, runnable test suites  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Senior test engineer for complete, runnable test suites
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: None (minimal persona)
 
 **Primary Use Case**: Generate a complete, runnable test file for a single specified source file.
@@ -439,8 +439,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-10: `step5_test_review_prompt` — Test Implementation Reviewer
 
-**Role**: Hands-on test engineer and code quality specialist  
-**Version introduced**: Pre-v3.2.0 (separated from `test_strategy_prompt` in v3.3.0)  
+**Role**: Hands-on test engineer and code quality specialist
+**Version introduced**: Pre-v3.2.0 (separated from `test_strategy_prompt` in v3.3.0)
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Review existing test code quality, structure, readability, and adherence to best practices. Provides tactical, code-level feedback. Does NOT perform strategic coverage analysis (see `test_strategy_prompt`).
@@ -460,8 +460,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-11: `step7_test_exec_prompt` — Test Execution Analyst
 
-**Role**: Senior CI/CD engineer and test results analyst  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Senior CI/CD engineer and test results analyst
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: `behavioral_structured`
 
 **Primary Use Case**: Analyze test execution results, diagnose failures, interpret coverage, and optimize CI/CD pipeline integration.
@@ -484,8 +484,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-12: `quality_prompt` — File-Level Code Reviewer
 
-**Role**: Senior code review specialist (10+ years)  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Senior code review specialist (10+ years)
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Quick, targeted file-level code review examining specific files for common problems, anti-patterns, and maintainability concerns. Does NOT perform architectural analysis (see `step9_code_quality_prompt`).
@@ -503,8 +503,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-13: `step9_code_quality_prompt` — Comprehensive Code Quality Engineer
 
-**Role**: Comprehensive software quality engineer (architectural analysis)  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Comprehensive software quality engineer (architectural analysis)
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: `behavioral_structured`
 
 **Primary Use Case**: In-depth system-wide code quality review considering design patterns, scalability, technical debt, and holistic code health. Evaluates architectural concerns beyond individual files.
@@ -523,8 +523,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-14: `step4_directory_prompt` — Directory Structure Validator
 
-**Role**: Senior software architect and technical documentation specialist  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Senior software architect and technical documentation specialist
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: `behavioral_structured`
 
 **Primary Use Case**: Validate project directory structure against documented architecture, language/framework conventions, and naming standards.
@@ -547,8 +547,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-15: `step2_consistency_prompt` — Documentation Consistency Validator (Workflow Step 2)
 
-**Role**: Senior technical documentation specialist (workflow step variant)  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Senior technical documentation specialist (workflow step variant)
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: `behavioral_structured`
 
 **Primary Use Case**: Workflow Step 2 automation. Performs documentation consistency analysis with specific focus on broken references, version number validation, and cross-file synchronization.
@@ -567,8 +567,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-16: `step3_script_refs_prompt` — Script Reference Validator (Workflow Step 3)
 
-**Role**: Senior technical documentation specialist and DevOps documentation expert  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Senior technical documentation specialist and DevOps documentation expert
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: `behavioral_structured`
 
 **Primary Use Case**: Workflow Step 3 automation. Validates that all executable scripts are documented and that documentation accurately reflects script behavior, arguments, and integration.
@@ -586,8 +586,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-17: `step8_dependencies_prompt` — Dependency Manager (Workflow Step 8)
 
-**Role**: Senior DevOps engineer and package management specialist  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Senior DevOps engineer and package management specialist
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: `behavioral_structured`
 
 **Primary Use Case**: Workflow Step 8 automation. Analyze project dependencies for security vulnerabilities, version compatibility, tree optimization, and update strategy.
@@ -606,8 +606,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-18: `step11_git_commit_prompt` — Git Commit Message Generator (Workflow Step 11)
 
-**Role**: Senior git workflow specialist and technical communication expert  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Senior git workflow specialist and technical communication expert
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Workflow Step 11 automation. Generate conventional commit messages based on git diff analysis.
@@ -625,8 +625,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-19: `step13_prompt_engineer_prompt` — Prompt Engineering Analyst (Workflow Step 13)
 
-**Role**: Senior prompt engineer and AI specialist  
-**Version introduced**: Pre-v3.2.0 (redesigned in v4.0.0)  
+**Role**: Senior prompt engineer and AI specialist
+**Version introduced**: Pre-v3.2.0 (redesigned in v4.0.0)
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Workflow Step 13/Step 14 automation. Analyze AI persona prompts for quality, token efficiency, and improvement opportunities.
@@ -643,8 +643,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-20: `issue_extraction_prompt` — Issue Extractor
 
-**Role**: Technical project manager specialized in issue extraction  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Technical project manager specialized in issue extraction
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: `behavioral_structured`
 
 **Primary Use Case**: Extract, categorize, and prioritize issues, recommendations, and action items from GitHub Copilot session logs.
@@ -661,8 +661,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-21: `version_manager_prompt` — Version Manager
 
-**Role**: Version Manager and Semantic Versioning Expert  
-**Version introduced**: Pre-v3.2.0  
+**Role**: Version Manager and Semantic Versioning Expert
+**Version introduced**: Pre-v3.2.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Analyze code changes and determine the appropriate semantic version bump type (major/minor/patch).
@@ -678,8 +678,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-22: `configuration_specialist_prompt` — Configuration Specialist
 
-**Role**: Senior DevOps Engineer and Configuration Management Expert  
-**Version introduced**: Pre-v6.0.0  
+**Role**: Senior DevOps Engineer and Configuration Management Expert
+**Version introduced**: Pre-v6.0.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Validate and analyze configuration files (JSON, YAML, TOML, INI, shell, Docker, CI/CD) for syntax correctness, security, consistency, and best practices.
@@ -702,8 +702,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-23: `observer_pattern_debugger_prompt` — Observer Pattern Debugger
 
-**Role**: Senior debugging specialist (observer/event-driven architectures)  
-**Version introduced**: v6.3.0  
+**Role**: Senior debugging specialist (observer/event-driven architectures)
+**Version introduced**: v6.3.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Diagnose notification chains, event propagation failures, and observer registration issues in observer/event-driven systems.
@@ -729,8 +729,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-24: `async_flow_debugger_prompt` — Async Flow Debugger
 
-**Role**: Senior async flow debugging specialist  
-**Version introduced**: v6.3.0  
+**Role**: Senior async flow debugging specialist
+**Version introduced**: v6.3.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Trace and debug asynchronous execution paths including Promise chains, async/await patterns, CORS issues, and race conditions.
@@ -749,8 +749,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-25: `data_structure_debugger_prompt` — Data Structure Debugger
 
-**Role**: Senior data structure debugging specialist  
-**Version introduced**: v6.3.0  
+**Role**: Senior data structure debugging specialist
+**Version introduced**: v6.3.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Identify API contract violations, test mock mismatches, spread operator issues with browser APIs, and data structure mismatches between producer and consumer.
@@ -773,8 +773,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-26: `aws_cloud_architect_prompt` — AWS Cloud Architect
 
-**Role**: Senior AWS Cloud Architect  
-**Version introduced**: v6.4.0  
+**Role**: Senior AWS Cloud Architect
+**Version introduced**: v6.4.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Design, review, or optimize AWS cloud architecture solutions aligned with business requirements, security standards, and operational excellence.
@@ -812,8 +812,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-27: `javascript_developer_prompt` — JavaScript Developer
 
-**Role**: Senior JavaScript Developer (package.json specialist)  
-**Version introduced**: v6.5.0  
+**Role**: Senior JavaScript Developer (package.json specialist)
+**Version introduced**: v6.5.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Review and improve `package.json` for Node.js and JavaScript projects. Manages dependencies, scripts, metadata, and security hygiene.
@@ -834,8 +834,8 @@ The prompt builder composes the final prompt in this order:
 
 #### FR-P-28: `typescript_developer_prompt` — TypeScript Developer ("Strider")
 
-**Role**: Strider, a Senior TypeScript Developer  
-**Version introduced**: v6.6.0  
+**Role**: Strider, a Senior TypeScript Developer
+**Version introduced**: v6.6.0
 **Behavioral guideline**: `behavioral_actionable`
 
 **Primary Use Case**: Review, implement, or refactor TypeScript code to be fully type-safe, idiomatic, and performant according to TypeScript best practices.

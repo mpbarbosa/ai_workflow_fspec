@@ -4,8 +4,8 @@
 **Module:** `steps/step_contract`
 **Version:** 1.0.0
 =======
-**Module:** `steps/step_contract`  
-**Version:** 1.0.1  
+**Module:** `steps/step_contract`
+**Version:** 1.0.1
 >>>>>>> 108d19c (docs(docs): update docs [skip ci])
 **Status:** Draft
 

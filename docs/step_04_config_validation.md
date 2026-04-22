@@ -234,8 +234,11 @@ Runs when the AI helper initialises successfully.
    `"${relativePath}:${content}"` hash-entry string (for the file-change guard, §3.7).
    Content is truncated to 2,000 characters per file. The prompt must direct the AI to
    treat any truncation marker as partial evidence only and to report the omitted remainder
-   as inconclusive rather than validated. Unreadable files are silently skipped. (See §3.2
-   of the AI Prompt Contract.)
+   as inconclusive rather than validated. Unreadable files are silently skipped. Generated
+   workflow helper bundles such as `.workflow_core/config/ai_helpers.yaml` are not analysed
+   directly in prompt slices; instead, Step 04 substitutes
+   `.workflow_core/.workflow-config.yaml` and `.workflow-config.yaml` as the authoritative
+   validation/reporting context for that artifact. (See §3.2 of the AI Prompt Contract.)
 
 4. **Build the prompt.** Load the `configuration_specialist_prompt` template from the AI
    helpers YAML configuration and populate: `project_name`, `config_files_list`,
