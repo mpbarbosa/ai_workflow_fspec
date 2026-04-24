@@ -33,7 +33,7 @@ Step 04 conforms to the **PROJECT** step kind as defined in `step_contract.md §
 | Kind identifier | `"project"` |
 | Execute signature | `execute(projectRoot, options?) → Promise<StepResult>` |
 | Can be skipped | **Yes** — when no configuration files are discovered |
-| AI-integrated | **Yes** — two AI calls (`devops_engineer` and `code_quality_analyst` personas) |
+| AI-integrated | **Yes** — partition-aware primary review, optional whole-scope synthesis, and supplementary quality review |
 
 **Error-handling deviation.** Step 04 re-throws unhandled exceptions from `execute` rather
 than returning `{ success: false, error }`. This deviates from step contract rule 4
@@ -42,12 +42,14 @@ from this step.
 
 **AI Prompt Contract conformance.** Step 04 conforms to
 [`ai_prompt_contract.md`](./ai_prompt_contract.md). Actual file content is injected into
-the primary AI prompt using a content-block builder that renders each file as a fenced code
-block with its relative path as a header. Content is truncated to 2,000 characters per
-file to limit token usage, and the prompt explicitly instructs the AI to treat truncation
-markers as partial evidence rather than as a basis for full-file success claims. File reads
-are individually wrapped in error handlers so that an unreadable file is silently skipped
-rather than aborting prompt construction.
+the AI prompts using content-block builders that render each file as a fenced code block
+with its relative path as a header. The primary and supplementary reviews partition
+oversized scope into prompt-safe batches instead of silently dropping files, while the
+whole-scope synthesis pass uses bounded per-file excerpts to reconcile findings across
+partitions. Prompts explicitly instruct the AI to treat truncation markers as partial
+evidence rather than as a basis for full-file success claims. File reads are individually
+wrapped in error handlers so that an unreadable file is silently skipped rather than
+aborting prompt construction.
 
 ---
 
@@ -229,50 +231,55 @@ Runs when the AI helper initialises successfully.
    frameworks. Build a comma-separated tech stack summary string. If `options.projectKind`
    is provided, use it in place of the detected language for the `project_kind` variable.
 
-3. **Build file content block and hash entries.** For each discovered file, read its
-   content and produce both a labelled fenced block (for the prompt) and a
+3. **Build prompt-safe file entries and partitions.** For each discovered file, read its
+   content and produce both a labelled fenced block (for prompts) and a
    `"${relativePath}:${content}"` hash-entry string (for the file-change guard, §3.7).
-   Content is truncated to 2,000 characters per file. The prompt must direct the AI to
-   treat any truncation marker as partial evidence only and to report the omitted remainder
-   as inconclusive rather than validated. Unreadable files are silently skipped. Generated
-   workflow helper bundles such as `.workflow_core/config/ai_helpers.yaml` are not analysed
-   directly in prompt slices; instead, Step 04 substitutes
-   `.workflow_core/.workflow-config.yaml` and `.workflow-config.yaml` as the authoritative
-   validation/reporting context for that artifact. (See §3.2 of the AI Prompt Contract.)
+   Generated lockfiles may be summarized before partitioning, oversized files may be split
+   into `(part X/Y)` entries, and unreadable files are silently skipped. Generated workflow
+   helper bundles such as `.workflow_core/config/ai_helpers.yaml` are not analysed directly
+   in prompt slices; instead, Step 04 substitutes `.workflow_core/.workflow-config.yaml`
+   and `.workflow-config.yaml` as the authoritative validation/reporting context for that
+   artifact. (See §3.2 of the AI Prompt Contract.)
 
-4. **Build the prompt.** Load the `configuration_specialist_prompt` template from the AI
-   helpers YAML configuration and populate: `project_name`, `config_files_list`,
-   `config_files_content`, `config_count`, `project_kind`, `tech_stack`. When the template
-   is unavailable, fall back to a built-in structured prompt embedding the issue counts and
-   the file content block directly.
+4. **Build and execute partition prompts.** Load the `configuration_specialist_prompt`
+   template from the AI helpers YAML configuration and populate the per-partition
+   variables (`project_name`, `partition_header`, `config_files_list`,
+   `config_files_content`, `config_count`, `project_kind`, `tech_stack`). When the
+   template is unavailable, fall back to a built-in structured prompt embedding the issue
+   counts and the current partition content block directly. Each partition runs through
+   `aiCache.withFileChangeGuard('step_04_p{n}', fileHashEntries, fn)` with persona
+   `devops_engineer`.
 
-5. **Execute via file-change guard.** Call
-   `aiCache.withFileChangeGuard('step_04', fileHashEntries, fn)` where `fileHashEntries`
-   is the array of `"${relativePath}:${content}"` strings built in step 3. When the
-   SHA256 hash of these entries matches the stored hash from the prior run, the cached
-   response is returned without making an AI API call (§3.7). Persona: `devops_engineer`.
+5. **Validate each partition response.** Apply the evidence-handling guard and quality gate
+   (§3.6). Log warnings when a partition response overclaims against partial evidence or
+   mentions too few files.
 
-6. **Validate response quality.** Apply the quality gate (§3.6). Log a warning when the
-   response coverage is below the 30% threshold.
+6. **Run whole-scope synthesis when partitioned.** When the primary review required more
+   than one partition, execute an additional `devops_engineer` prompt that sees the full
+   file list, bounded whole-scope excerpts, and all per-partition findings. This synthesis
+   pass is responsible for detecting contradictions and reconciliations that only become
+   visible across partitions.
 
-7. **Write enriched backlog entry.** If an AI response was produced, append it to the
-   backlog report under an `"AI Recommendations"` heading.
+7. **Write enriched backlog entry.** If AI output was produced, append the partition
+   analysis and any whole-scope synthesis under an `"AI Recommendations"` heading.
 
 #### Phase AI-2 — Quality Review (Conditional, Supplementary)
 
 Runs when the AI helper initialised successfully and the `quality_prompt` YAML template is
 available.
 
-1. **Build the quality prompt.** Populate `quality_prompt` with: `files_to_review` (up
-   to the first 10 discovered file paths), `project_name`.
+1. **Build prompt-safe supplementary partitions.** Populate `quality_prompt` for the full
+   discovered configuration scope rather than only the first 10 files. When necessary,
+   split the supplementary review into multiple prompt-safe partitions and preserve any
+   `(part X/Y)` labels in the rendered scope.
 
 2. **Execute via file-change guard.** Call
-   `aiCache.withFileChangeGuard('step_04_quality', fileHashEntries, fn)` reusing the same
-   `fileHashEntries` from Phase AI-1. When the hash is unchanged, the cached quality
-   response is returned without an API call (§3.7). Persona: `code_quality_analyst`.
+   `aiCache.withFileChangeGuard('step_04_quality_p{n}', fileHashEntries, fn)` for each
+   supplementary partition. When the hash is unchanged, the cached quality response is
+   returned without an API call (§3.7). Persona: `code_quality_analyst`.
 
-3. **Append quality review.** If a response was produced, append it to the backlog report
-   under a `"Quality Review"` heading.
+3. **Append quality review.** If responses were produced, append the partitioned
+   supplementary review under a `"Quality Review"` heading.
 
 When the AI helper is unavailable, both AI phases are skipped with a warning logged.
 
@@ -358,13 +365,15 @@ The skip result is `{ success: true, skipped: true, reason: 'no_config_files' }`
    `withFileChangeGuard` call. Failure to do so causes a runtime error even when no prior
    hash entry has been written.
 
-6. Both AI calls (Phase AI-1 and Phase AI-2) **must** use `withFileChangeGuard` and
-   **must** pass the same `fileHashEntries` array so that a change to any discovered file
-   invalidates both cached responses independently (via their respective step identifiers).
+6. Every AI phase (partitioned primary review, whole-scope synthesis, and partitioned
+   supplementary quality review) **must** use `withFileChangeGuard`. Cache keys must remain
+   distinct per phase/partition so that a change to any relevant discovered file invalidates
+   the right cached response without conflating primary, synthesis, and quality outputs.
    Hashes are persisted in `.ai_workflow/.ai_cache/step_hashes.json`; entries survive
    process restarts and have no TTL — they are replaced only when the hash changes.
 
-7. The primary AI call uses the `devops_engineer` persona. This persona covers the full
+7. The primary review and whole-scope synthesis use the `devops_engineer` persona. This
+   persona covers the full
    scope of the `configuration_specialist_prompt` template (JSON/YAML/TOML, CI/CD, Docker,
    environment configuration). Using a narrower persona (e.g. `security_expert`) would
    create a mismatch with the broad-scope prompt content.
