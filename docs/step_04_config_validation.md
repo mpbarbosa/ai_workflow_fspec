@@ -46,10 +46,13 @@ the AI prompts using content-block builders that render each file as a fenced co
 with its relative path as a header. The primary and supplementary reviews partition
 oversized scope into prompt-safe batches instead of silently dropping files, while the
 whole-scope synthesis pass uses bounded per-file excerpts to reconcile findings across
-partitions. Prompts explicitly instruct the AI to treat truncation markers as partial
-evidence rather than as a basis for full-file success claims. File reads are individually
-wrapped in error handlers so that an unreadable file is silently skipped rather than
-aborting prompt construction.
+partitions. Prompts explicitly instruct the AI to treat truncation markers, generated-file
+summaries, and partition-local scope as partial evidence rather than as a basis for
+full-file or run-wide success claims. Responses are post-validated so out-of-scope file
+mentions, global success verdicts over subset scope, and incomplete
+`.workflow-config.yaml` override coverage can be narrowed before they are written to
+backlog artifacts. File reads are individually wrapped in error handlers so that an
+unreadable file is silently skipped rather than aborting prompt construction.
 
 ---
 
@@ -134,8 +137,13 @@ Two format-specific checks are applied:
 After the primary AI call, the response text is checked to ensure it adequately covers the
 files it was asked to review. A response is considered adequate when at least 30% of the
 analysed file names (matched by basename or any trailing path segment) appear in the
-response text. Responses below this threshold are logged as low quality but do not cause
-the step to fail or the backlog write to be suppressed.
+response text. Step 04 also validates whether the AI respected prompt evidence boundaries:
+generated summaries, truncated files, omitted files, and partition-local subsets must not
+produce global success language; responses must stay within the current scope list; and
+when `.workflow-config.yaml` visibly contains multiple dependency overrides, exhaustive
+claims about rewires must cover each visible override. Responses below these thresholds
+are logged as low quality and normalized before backlog write, but they do not cause the
+step to fail or the backlog write to be suppressed.
 
 ### 3.7 File-Content-Hash Guard
 
